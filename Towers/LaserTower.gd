@@ -26,6 +26,6 @@ func _init() -> void:
 	cost = 300
 	sell_value = 150
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	barrel.look_at(Target.position)
 	turret.look_at(Vector3(Target.position.x, turret.position.y, Target.position.z))
