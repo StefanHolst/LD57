@@ -1,9 +1,12 @@
 class_name Soldier extends Unit
 
+var soldierScene = preload("res://Units/SoldierScene.tscn")
+
 func _init() -> void:
-	# Initialize the unit with specific properties
+	self.add_child(soldierScene.instantiate() as Node3D)
+
 	health = 100
-	speed = 5
+	speed = 0.1
 
 	upgrade_cost = 50
 	upgrade_health = 20

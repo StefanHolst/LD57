@@ -6,7 +6,10 @@
 script = ExtResource("1_wbfu4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.788913, 0.614506, 0, -0.614506, 0.788913, 0, 3.2603, 4.16629)
+transform = Transform3D(1, 0, 0, 0, 0.358303, 0.933606, 0, -0.933606, 0.358303, 1.9658, 5.97313, 5.35423)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.011292, 0.999936, 0, -0.999936, -0.011292, 0, 4.42668, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+cell_size = Vector3(1, 1, 1)
