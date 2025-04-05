@@ -13,6 +13,7 @@ var upgrade_attack_speed: float
 var cost: int
 var sell_value: int
 
+# Logic
 func unit_in_range(unit):
 	# Check if the unit is within range
 	return position.distance_to(unit.position) <= attack_range
