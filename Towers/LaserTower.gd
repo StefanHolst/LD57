@@ -16,7 +16,7 @@ func _init(_map: Map) -> void:
 	barrel = instance.find_child("Barrel")
 	
 	attack_range = 3.5
-	attack_damage = 50
+	attack_damage = 20
 	attack_speed = 1000
 
 	upgrade_cost = 100
@@ -44,5 +44,6 @@ func attack(unit: Unit) -> Node3D:
 
 	# create projectile
 	var p = LaserProjectile.new(map, barrel.global_position, unit.position)
+	p.damage = attack_damage
 	map.add_projectile(p)
 	return null
