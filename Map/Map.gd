@@ -15,8 +15,8 @@ var projectiles: Array = []
 
 func _init(_game: Node3D) -> void:
 	game = _game
-	
-	
+
+	# Find start and end points
 
 	# Create route
 	for x in range(0, 5):

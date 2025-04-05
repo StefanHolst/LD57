@@ -415,7 +415,7 @@ _data = {
 [node name="SoldierScene" type="Node3D"]
 
 [node name="metarig" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.000456494, -0.393791, 0.0168141)
+transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0.9, 0.017)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="metarig"]
 bones/0/name = "spine"

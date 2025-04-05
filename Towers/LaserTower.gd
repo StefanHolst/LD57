@@ -15,7 +15,7 @@ func _init(_map: Map) -> void:
 	turret = instance.find_child("Turret")
 	barrel = instance.find_child("Barrel")
 	
-	attack_range = 200
+	attack_range = 3.5
 	attack_damage = 50
 	attack_speed = 1000
 
