@@ -7,7 +7,7 @@ albedo_color = Color(0.349782, 0.350419, 0.364083, 1)
 material = SubResource("StandardMaterial3D_5fwat")
 size = Vector2(1, 1)
 
-[node name="Node3D" type="Node3D"]
+[node name="Route" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Route" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_c5ggv")
