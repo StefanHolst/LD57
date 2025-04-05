@@ -6,7 +6,7 @@ func _init() -> void:
 	self.add_child(soldierScene.instantiate() as Node3D)
 
 	health = 100
-	speed = 0.1
+	speed = 2
 
 	upgrade_cost = 50
 	upgrade_health = 20

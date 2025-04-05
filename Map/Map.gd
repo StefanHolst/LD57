@@ -4,7 +4,8 @@ var floorScene = preload("res://Map/FloorScene.tscn")
 var routeScene = preload("res://Map/RouteScene.tscn")
 
 var map_floor: Array = []
-var route: Array     = []
+var map_route: Array = []
+var route: Array = []
 var route_lookup = {}
 var towers: Array = []
 var units: Array = []
@@ -14,7 +15,8 @@ func _init() -> void:
 	for x in range(0, 5):
 		var scene = routeScene.instantiate() as Node3D
 		scene.position = Vector3(x, 0, 3)
-		route.append(scene)
+		map_route.append(scene)
+		route.append(scene.position)
 		route_lookup[scene.position] = scene
 
 	# Generate floor
@@ -41,29 +43,17 @@ func _init() -> void:
 func add_to_scene(node: Node3D):
 	for f in map_floor:
 		node.add_child(f)
-	for r in route:
+	for r in map_route:
 		node.add_child(r)
 	for t in towers:
 		node.add_child(t)
 	for u in units:
 		node.add_child(u)
 
-func move_units():
-	for unit in units:
-		if unit.should_move():
-			move_unit(unit, Vector3(0.1, 0, 0))
-			
-func move_unit(unit: Unit, target: Vector3):
-	# Move the unit towards the target
-	unit.position = (target + unit.position)
+func move_units(_delta: float) -> void:
+	if (route.size() == 0):
+		return
 	
-	
-#   {
-#      for each unit in units:
-#         move unit to next point
-#         check if unit reaches end of route
-#            start attack on the main tower
-# 		  check if any are in range of a tower
-# 		  if so, attack unit
-# 		     check if unit is dead, if so, remove it from the list
-#	}
+	# Get the units that should move
+	for unit : Unit in units:
+		unit.move(_delta, route) # Move the unit along the route
