@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=31 format=4 uid="uid://btxqc0fb2cej2"]
+[gd_resource type="MeshLibrary" load_steps=31 format=4 uid="uid://dynrbfy5rcnub"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lc5n"]
 resource_name = "glow"

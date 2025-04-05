@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://brndkvhx57g51"]
+
+[ext_resource type="Script" uid="uid://bet6myjlb13o" path="res://Projectiles/RocketProjectile.gd" id="1_022kb"]
+[ext_resource type="PackedScene" uid="uid://g8c1yrnjmxus" path="res://Assets/rocket.glb" id="2_pg3qs"]
+
+[node name="Rocket" type="Node3D"]
+script = ExtResource("1_022kb")
+
+[node name="rocket" parent="." instance=ExtResource("2_pg3qs")]
+transform = Transform3D(0.1, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0, 0, 0)

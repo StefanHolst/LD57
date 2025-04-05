@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2m7lcxl2olkf"]
 
-[ext_resource type="PackedScene" uid="uid://7su87lb7qy2f" path="res://Assets/laser.glb" id="1_3se3k"]
+[ext_resource type="PackedScene" uid="uid://0jrtk2r13x2b" path="res://Assets/laser.glb" id="1_3se3k"]
 
 [node name="Projectile" type="Node3D"]
 

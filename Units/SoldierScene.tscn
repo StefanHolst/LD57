@@ -1,4 +1,6 @@
-[gd_scene load_steps=13 format=4 uid="uid://07kkfn5jc0s2"]
+[gd_scene load_steps=14 format=4 uid="uid://07kkfn5jc0s2"]
+
+[ext_resource type="Script" uid="uid://c1tbtbiqbd0dn" path="res://Units/soldier_scene.gd" id="1_ut408"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37gc4"]
 resource_name = "Body"
@@ -423,6 +425,7 @@ viewport_path = NodePath("SubViewport")
 bg_color = Color(0.700606, 0, 0.150155, 1)
 
 [node name="SoldierScene" type="Node3D"]
+script = ExtResource("1_ut408")
 
 [node name="metarig" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0.9, 0.017)
