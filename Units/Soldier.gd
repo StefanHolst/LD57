@@ -11,5 +11,3 @@ func _init() -> void:
 
 	cost = 200
 	sell_value = 100
-
-	position = Vector2(0, 0)

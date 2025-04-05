@@ -1,6 +1,10 @@
 class_name RocketTower extends Tower
 
+var rocketTowerScene = preload("res://Towers/RocketTowerScene.tscn")
+
 func _init() -> void:
+	self.add_child(rocketTowerScene.instantiate() as Node3D)
+
 	# Initialize the tower with specific properties
 	attack_range = 200
 	attack_damage = 50
@@ -13,5 +17,3 @@ func _init() -> void:
 
 	cost = 300
 	sell_value = 150
-
-	position = Vector2(0, 0)
