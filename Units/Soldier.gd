@@ -6,7 +6,21 @@ var scene: Node3D
 
 func _ready():
 	var player = scene.find_child("AnimationPlayer") as AnimationPlayer
-	player.play_section_with_markers("enemy_animations", "WalkStart", "WalkEnd")
+	var animation = player.get_animation("enemy_animations")
+	var start = animation.get_marker_time("WalkStart")
+	var end = animation.get_marker_time("WalkEnd")
+	var duration = end - start;
+	
+	while true:
+		player.play("enemy_animations")
+		player.seek(start, true)
+		await get_tree().create_timer(duration).timeout
+
+		player.play_backwards("enemy_animations")
+		player.seek(end, true)
+		await get_tree().create_timer(duration).timeout
+	player.stop()
+	#player.play_section_with_markers("enemy_animations", "WalkStart", "WalkEnd")
 
 func _init(_map: Map) -> void:
 	super(_map)

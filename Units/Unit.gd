@@ -31,8 +31,8 @@ func move(_delta: float, route: Array) -> void:
 		current_route_index += 1 # Move to next route
 		if (current_route_index >= route.size()):
 			# Unit has reached the end of the route
-			#current_route_index = 0 # Reset the route index
-			map.remove_unit(self)
+			current_route_index = 0 # Reset the route index
+#			map.remove_unit(self)
 
 func projectile_entered(projectile) -> void:
 	if projectile.is_in_group("projectile"): # Check if the object is in the enemy group
