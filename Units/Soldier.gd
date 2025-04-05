@@ -2,8 +2,17 @@ class_name Soldier extends Unit
 
 var soldierScene = preload("res://Units/SoldierScene.tscn")
 
-func _init() -> void:
-	self.add_child(soldierScene.instantiate() as Node3D)
+var scene: Node3D
+
+func _ready():
+	var player = scene.find_child("AnimationPlayer") as AnimationPlayer
+	player.play_section_with_markers("enemy_animations", "WalkStart", "WalkEnd")
+
+func _init(_map: Map) -> void:
+	super(_map)
+	scene = soldierScene.instantiate() as Node3D
+	self.add_child(scene)
+	map = _map
 
 	health = 100
 	speed = 2

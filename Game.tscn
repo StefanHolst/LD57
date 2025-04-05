@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7vrwqgac2rk2"]
+[gd_scene load_steps=4 format=3 uid="uid://b7vrwqgac2rk2"]
 
 [ext_resource type="Script" uid="uid://gucfim828vh" path="res://game.gd" id="1_wbfu4"]
+
+[sub_resource type="Environment" id="Environment_wbfu4"]
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_xkndl"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_wbfu4")
@@ -10,3 +15,7 @@ transform = Transform3D(1, 0, 0, 0, 0.358303, 0.933606, 0, -0.933606, 0.358303, 
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 18, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wbfu4")
+camera_attributes = SubResource("CameraAttributesPractical_xkndl")

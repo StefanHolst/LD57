@@ -7,7 +7,8 @@ var instance: Node3D;
 var turret: Node3D;
 var barrel: Node3D;
 
-func _init() -> void:
+func _init(_map: Map) -> void:
+	super(_map)
 	instance = laserTowerModel.instantiate()
 	self.add_child(instance)
 	
@@ -16,7 +17,7 @@ func _init() -> void:
 	
 	attack_range = 200
 	attack_damage = 50
-	attack_speed = 1.0
+	attack_speed = 1000
 
 	upgrade_cost = 100
 	upgrade_range = 50
@@ -29,3 +30,20 @@ func _init() -> void:
 func _process(_delta: float) -> void:
 	barrel.look_at(Target.position)
 	turret.look_at(Vector3(Target.position.x, turret.position.y, Target.position.z))
+
+var last_fire: float
+func attack(unit: Unit) -> Node3D:
+	Target = unit
+
+	# determine if the tower is ready to attack
+	if (last_fire + attack_speed > Time.get_ticks_msec()):
+		return null
+	last_fire = Time.get_ticks_msec()
+
+	print("Attacking unit: ", unit)
+
+	# create projectile
+	var p = LaserProjectile.new(map)
+	p.position = Vector3(1,2,1)
+	map.add_projectile(p)
+	return null

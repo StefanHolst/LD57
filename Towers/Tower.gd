@@ -13,7 +13,11 @@ var upgrade_attack_speed: float
 var cost: int
 var sell_value: int
 
-# Logic
-func unit_in_range(unit):
-	# Check if the unit is within range
-	return position.distance_to(unit.position) <= attack_range
+var map: Map
+
+func _init(_map: Map) -> void:
+	map = _map
+
+func attack(unit: Unit) -> Node3D:
+	push_error("Abstract method 'attack' must be implemented by subclass.")
+	return null
