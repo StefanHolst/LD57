@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://07kkfn5jc0s2"]
+[gd_scene load_steps=15 format=4 uid="uid://07kkfn5jc0s2"]
 
-[ext_resource type="Script" uid="uid://c1tbtbiqbd0dn" path="res://Units/soldier_scene.gd" id="1_ut408"]
+[ext_resource type="Script" uid="uid://boxllhqrljjkn" path="res://Units/Soldier.gd" id="1_ut408"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37gc4"]
 resource_name = "Body"
@@ -419,16 +419,18 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_nq7dk"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nq7dk"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l022"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut408"]
-bg_color = Color(0.700606, 0, 0.150155, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw74r"]
+bg_color = Color(0.626798, 0.0659753, 0, 1)
 
-[node name="SoldierScene" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iw74r"]
+
+[node name="Body" type="CharacterBody3D"]
 script = ExtResource("1_ut408")
 
 [node name="metarig" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0.9, 0.017)
+transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="metarig"]
 bones/0/name = "spine"
@@ -624,7 +626,7 @@ libraries = {
 }
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59535, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74108, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_nq7dk")
 
@@ -635,19 +637,13 @@ size = Vector2i(100, 23)
 
 [node name="HealthBar" type="ProgressBar" parent="SubViewport"]
 visible = false
-anchors_preset = -1
-anchor_left = 0.153
-anchor_top = 0.006
-anchor_right = 0.326
-anchor_bottom = 0.042
-offset_left = -15.3
-offset_top = -0.3
-offset_right = 67.4
-offset_bottom = 22.34
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_nq7dk")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ut408")
-value = 100.0
+offset_right = 100.0
+offset_bottom = 23.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6l022")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iw74r")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_iw74r")

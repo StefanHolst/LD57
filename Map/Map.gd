@@ -3,6 +3,7 @@ class_name Map
 var floorScene = preload("res://Map/FloorScene.tscn")
 var routeScene = preload("res://Map/RouteScene.tscn")
 var terrain1 = preload("res://Map/terrain1.tscn")
+var soldierScene = preload("res://Units/SoldierScene.tscn")
 
 var game: Node3D
 
@@ -16,46 +17,25 @@ var projectiles: Array = []
 
 func _init(_game: Node3D) -> void:
 	game = _game
-
-	# Find start and end points
+	var terrain = terrain1.instantiate()
+	map_floor.append(terrain)
 	
-	map_floor.append(terrain1.instantiate())
-	
-	#var unit = Soldier.new(self)
-	#unit.position = Vector3(-1, 3, 3)
-	##print(unit.speed)
-	#units.append(unit)
+	var target = Vector3(-7,4,2)
 
-	## Create route
-	#for x in range(0, 5):
-		#var scene = routeScene.instantiate() as Node3D
-		#scene.position = Vector3(x, 0, 3)
-		#map_route.append(scene)
-		#route.append(scene.position)
-		#route_lookup[scene.position] = scene
-#
-	## Generate floor
-	#for y in range(0, 5):
-		#for x in range(0, 5):
-			#var pos = Vector3(x, 0, y)
-			#if (route_lookup.has(pos) == false):
-				#var scene = floorScene.instantiate() as Node3D
-				#scene.position = pos
-				#map_floor.append(scene)
-#
-	## Create test towers
-	#for i in range(0, 3):
-		#var tower1 = LaserTower.new(self)
-		#tower1.position = Vector3(i * 2, 0, 0)
-		#towers.append(tower1)
+	# Create test towers
+	var tower1 = LaserTower.new(self)
+	tower1.position = Vector3(1, 4, 5)
+	towers.append(tower1)
+	var tower2 = LaserTower.new(self)
+	tower2.position = Vector3(-5, 4, 3)
+	towers.append(tower2)
 #
 	## Create test units
-	#for i in range(0, 3):
-		#var unit = Soldier.new(self)
-		#unit.position = Vector3(0, 0, 3)
-		#unit.speed = i + 1
-		#print(unit.speed)
-		#units.append(unit)
+	for i in range(0, 30):
+		var unit = soldierScene.instantiate()
+		unit.position = Vector3(-1, 3, 10 + i)
+		unit.target = target
+		units.append(unit)
 
 func add_to_scene():
 	for f in map_floor:
@@ -104,6 +84,7 @@ func add_damage(position: Vector3, projectile: Projectile) -> void:
 		if (unit.position.distance_to(position) < projectile.range):
 			unit.health -= projectile.damage
 			var healthPercent = (unit.health / unit.max_health) * 100.0
+			print(healthPercent)
 			unit.healthBar.value = healthPercent
 			unit.healthBar.visible = true
 			if (unit.health <= 0):

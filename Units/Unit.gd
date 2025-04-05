@@ -1,7 +1,10 @@
-class_name Unit extends Node3D
+class_name Unit extends CharacterBody3D
+
+var healthBar: ProgressBar
 
 # Properties
-var health: int
+var max_health: float
+var health: float
 var speed: float # how many times the unit can move in a second
 
 var upgrade_cost: int
@@ -13,10 +16,9 @@ var sell_value: int
 
 var current_route_index: int = 0
 
-var map: Map
 
-func _init(_map: Map) -> void:
-	map = _map
+func _init() -> void:
+	pass
 	#connect("projectile_entered", Callable(self, "_on_area_entered"))  # Correct way to connect the signal
 
 #func move(_delta: float, route: Array) -> void:

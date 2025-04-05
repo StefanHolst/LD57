@@ -1,13 +1,16 @@
-class_name Soldier extends Unit
+extends Unit
 
-var soldierScene = preload("res://Units/SoldierScene.tscn")
+@onready var nav: NavigationAgent3D = $NavigationAgent3D;
 
-var scene: Node3D
+@export var target: Vector3
+
+var body
+var accel = 10
 
 func _ready():
-	healthBar = scene.find_child("HealthBar") as ProgressBar
-	
-	var player = scene.find_child("AnimationPlayer") as AnimationPlayer
+	healthBar = find_child("HealthBar")
+	body = find_child("Body")
+	var player = find_child("AnimationPlayer")
 	var animation = player.get_animation("enemy_animations")
 	var start = animation.get_marker_time("WalkStart")
 	var end = animation.get_marker_time("WalkEnd")
@@ -16,19 +19,15 @@ func _ready():
 	while true:
 		var tree = get_tree()
 		if (tree == null):
+			print("wtf")
 			break
 		player.play("enemy_animations")
 		player.seek(start, true)
 		await get_tree().create_timer(duration).timeout
 	player.stop()
-
-func _init(_map: Map) -> void:
-	super(_map)
-	scene = soldierScene.instantiate() as Node3D
-	self.add_child(scene)
-	map = _map
-
-	max_health = 100.0
+#AnimationMixer (at: SoldierScene.tscn): 'metarigAction', couldn't resolve track:  'metarig/Skeleton3D:toe.L'. This warning can be disabled in Project Settings.
+func _init() -> void:
+	max_health = 100
 	health = max_health
 	speed = 2
 
@@ -38,3 +37,19 @@ func _init(_map: Map) -> void:
 
 	cost = 200
 	sell_value = 100
+
+func _physics_process(delta: float) -> void:
+	var direction = Vector3();
+	
+	if (target == null):
+		return
+	
+	nav.target_position = target
+	direction = nav.get_next_path_position() - global_position
+	direction = direction.normalized()
+	
+	self.look_at(self.global_position + direction)
+	
+	velocity = velocity.lerp(direction * speed, accel * delta)
+	
+	move_and_slide()
