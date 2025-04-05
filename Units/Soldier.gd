@@ -5,6 +5,8 @@ var soldierScene = preload("res://Units/SoldierScene.tscn")
 var scene: Node3D
 
 func _ready():
+	healthBar = scene.find_child("HealthBar") as ProgressBar
+	
 	var player = scene.find_child("AnimationPlayer") as AnimationPlayer
 	var animation = player.get_animation("enemy_animations")
 	var start = animation.get_marker_time("WalkStart")
@@ -26,7 +28,8 @@ func _init(_map: Map) -> void:
 	self.add_child(scene)
 	map = _map
 
-	health = 100
+	max_health = 100.0
+	health = max_health
 	speed = 2
 
 	upgrade_cost = 50

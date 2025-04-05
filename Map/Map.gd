@@ -89,11 +89,14 @@ func towers_attack() -> void:
 			tower.attack(closest_unit) # Attack the closest unit
 			pass
 
-func add_damage(_position: Vector3, projectile: Projectile) -> void:
+func add_damage(position: Vector3, projectile: Projectile) -> void:
 	print("Damage: ", projectile.damage)
 	# Find the unit at the position
 	for unit in units:
-		if (unit.position.distance_to(_position) < projectile.range):
+		if (unit.position.distance_to(position) < projectile.range):
 			unit.health -= projectile.damage
+			var healthPercent = (unit.health / unit.max_health) * 100.0
+			unit.healthBar.value = healthPercent
+			unit.healthBar.visible = true
 			if (unit.health <= 0):
 				remove_unit(unit)

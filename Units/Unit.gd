@@ -1,7 +1,10 @@
 class_name Unit extends CharacterBody3D
 
+var healthBar: ProgressBar
+
 # Properties
-var health: int
+var max_health: float
+var health: float
 var speed: float # how many times the unit can move in a second
 
 var upgrade_cost: int
@@ -17,7 +20,6 @@ var map: Map
 
 func _init(_map: Map) -> void:
 	map = _map
-	#connect("projectile_entered", Callable(self, "_on_area_entered"))  # Correct way to connect the signal
 
 func move(_delta: float, route: Array) -> void:
 	var target_route = route[current_route_index] as Vector3 # Get the target route
@@ -33,8 +35,3 @@ func move(_delta: float, route: Array) -> void:
 			# Unit has reached the end of the route
 			current_route_index = 0 # Reset the route index
 #			map.remove_unit(self)
-
-func projectile_entered(projectile) -> void:
-	if projectile.is_in_group("projectile"): # Check if the object is in the enemy group
-		projectile.queue_free() # Remove the projectile
-		map.remove_unit(self)

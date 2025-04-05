@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://07kkfn5jc0s2"]
+[gd_scene load_steps=13 format=4 uid="uid://07kkfn5jc0s2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37gc4"]
 resource_name = "Body"
@@ -414,6 +414,14 @@ _data = {
 &"metarigAction": SubResource("Animation_tgbnh")
 }
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_nq7dk"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nq7dk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut408"]
+bg_color = Color(0.700606, 0, 0.150155, 1)
+
 [node name="SoldierScene" type="Node3D"]
 
 [node name="metarig" type="Node3D" parent="."]
@@ -432,7 +440,7 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(0.99944, 0.0334491, 0.000871817, -0.0330587, 0.98308, 0.180171, 0.00516947, -0.180099, 0.983635, -8.19879e-10, 0.152219, -5.74001e-09)
 bones/1/enabled = true
 bones/1/position = Vector3(-8.19879e-10, 0.152219, -5.74001e-09)
-bones/1/rotation = Quaternion(-0.0903393, -0.000531101, -0.0133267, 0.995822)
+bones/1/rotation = Quaternion(-0.0904508, -0.00107899, -0.0166977, 0.99576)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "spine.002"
 bones/2/parent = 1
@@ -474,14 +482,14 @@ bones/7/parent = 6
 bones/7/rest = Transform3D(0.0206676, 0.10958, 0.993763, -0.920696, 0.389553, -0.023807, -0.389732, -0.914462, 0.108941, -6.00494e-05, 0.407885, -0.0196469)
 bones/7/enabled = true
 bones/7/position = Vector3(-6.00494e-05, 0.407885, -0.0196469)
-bones/7/rotation = Quaternion(-0.379479, 0.607124, -0.38271, 0.583892)
+bones/7/rotation = Quaternion(-0.361308, 0.561236, -0.417947, 0.616271)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "forearm.L"
 bones/8/parent = 7
 bones/8/rest = Transform3D(0.94991, 0.0683055, 0.304969, -0.0568357, 0.997307, -0.0463416, -0.307314, 0.0266872, 0.951234, -5.96046e-08, 0.337698, 1.39698e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(-5.96046e-08, 0.337698, 1.39698e-08)
-bones/8/rotation = Quaternion(0.402798, -0.00382375, -0.054757, 0.913641)
+bones/8/rotation = Quaternion(0.0184935, 0.155052, -0.0316902, 0.987225)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "shoulder.R"
 bones/9/parent = 3
@@ -495,14 +503,14 @@ bones/10/parent = 9
 bones/10/rest = Transform3D(0.0206677, -0.10958, -0.993763, 0.920697, 0.389553, -0.0238069, 0.389732, -0.914462, 0.108941, 6.00503e-05, 0.407885, -0.0196469)
 bones/10/enabled = true
 bones/10/position = Vector3(6.00503e-05, 0.407885, -0.0196469)
-bones/10/rotation = Quaternion(-0.406744, -0.679921, 0.317274, 0.521156)
+bones/10/rotation = Quaternion(-0.361308, -0.561236, 0.417947, 0.616271)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "forearm.R"
 bones/11/parent = 10
 bones/11/rest = Transform3D(0.94991, -0.0683054, -0.304969, 0.0568356, 0.997307, -0.0463416, 0.307314, 0.0266872, 0.951234, -3.07336e-08, 0.337698, -1.11759e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(-3.07336e-08, 0.337698, -1.11759e-08)
-bones/11/rotation = Quaternion(0.310916, -0.0369821, 0.0497722, 0.948412)
+bones/11/rotation = Quaternion(0.0184935, -0.155052, 0.0316901, 0.987225)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "breast.L"
 bones/12/parent = 3
@@ -537,14 +545,14 @@ bones/16/parent = 0
 bones/16/rest = Transform3D(0.999986, 0.00532331, -0.000276303, 0.00490212, -0.938749, -0.344566, -0.00209361, 0.34456, -0.938762, 0.169653, -0.00069382, 0.0443783)
 bones/16/enabled = true
 bones/16/position = Vector3(0.169653, -0.00069382, 0.0443783)
-bones/16/rotation = Quaternion(0.988113, 0.0026088, -0.000545627, 0.153705)
+bones/16/rotation = Quaternion(0.984568, 0.00259643, -0.000601765, 0.174982)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "shin.L"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.99983, -0.0182753, 0.00243994, 0.0183807, 0.97761, -0.209621, 0.00144558, 0.20963, 0.97778, 7.40465e-09, 0.412883, 8.76025e-09)
 bones/17/enabled = true
 bones/17/position = Vector3(7.40465e-09, 0.412883, 8.76025e-09)
-bones/17/rotation = Quaternion(0.348823, -0.000738117, 0.0087822, 0.937147)
+bones/17/rotation = Quaternion(0.105404, 0.000249992, 0.00921574, 0.994387)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "foot.L"
 bones/18/parent = 17
@@ -572,14 +580,14 @@ bones/21/parent = 0
 bones/21/rest = Transform3D(0.999986, -0.00532346, 0.000276749, -0.0049021, -0.938749, -0.344566, 0.00209408, 0.34456, -0.938762, -0.153827, -0.00069382, 0.0443782)
 bones/21/enabled = true
 bones/21/position = Vector3(-0.153827, -0.00069382, 0.0443782)
-bones/21/rotation = Quaternion(0.962795, -0.00252534, 0.00085249, 0.270221)
+bones/21/rotation = Quaternion(0.984568, -0.00259646, 0.000601997, 0.174982)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "shin.R"
 bones/22/parent = 21
 bones/22/rest = Transform3D(0.99983, 0.0182753, -0.00243993, -0.0183807, 0.97761, -0.209621, -0.00144558, 0.20963, 0.97778, 9.9426e-09, 0.412883, 3.89628e-09)
 bones/22/enabled = true
 bones/22/position = Vector3(9.9426e-09, 0.412883, 3.89628e-09)
-bones/22/rotation = Quaternion(0.28257, 0.000464871, -0.00895996, 0.959205)
+bones/22/rotation = Quaternion(0.105404, -0.00024999, -0.00921573, 0.994387)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "foot.R"
 bones/23/parent = 22
@@ -611,3 +619,32 @@ skin = SubResource("Skin_ut408")
 libraries = {
 &"": SubResource("AnimationLibrary_cn61t")
 }
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59535, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_nq7dk")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(100, 23)
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.153
+anchor_top = 0.006
+anchor_right = 0.326
+anchor_bottom = 0.042
+offset_left = -15.3
+offset_top = -0.3
+offset_right = 67.4
+offset_bottom = 22.34
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_nq7dk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ut408")
+value = 100.0
