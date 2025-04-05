@@ -88,3 +88,6 @@ func towers_attack() -> void:
 		if (closest_unit != null and closest_distance < tower.attack_range):
 			tower.attack(closest_unit) # Attack the closest unit
 			pass
+
+func add_damage(position: Vector3, projectile: Projectile) -> void:
+	print("Damage")

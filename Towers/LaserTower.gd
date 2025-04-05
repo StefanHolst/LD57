@@ -43,7 +43,6 @@ func attack(unit: Unit) -> Node3D:
 	print("Attacking unit: ", unit)
 
 	# create projectile
-	var p = LaserProjectile.new(map)
-	p.position = Vector3(1,2,1)
+	var p = LaserProjectile.new(map, barrel.global_position, unit.position)
 	map.add_projectile(p)
 	return null
