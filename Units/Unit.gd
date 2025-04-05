@@ -1,13 +1,13 @@
 class_name Unit
 
-var health = 0
-var speed = 0
+var health: int
+var speed: int
 
-var upgrade_cost = 0
-var upgrade_health = 0
-var upgrade_speed = 0
+var upgrade_cost: int
+var upgrade_health: int
+var upgrade_speed: int
 
-var cost = 0
-var sell_value = 0
+var cost: int
+var sell_value: int
 
-var position = Vector2()
+var position: Vector2
