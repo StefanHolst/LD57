@@ -10,7 +10,7 @@ var mapScene = preload("res://Map/MapScene.tscn")
 var game: Node3D
 var scene: Node3D
 
-var HQ: Node3D;
+var HQ: Headquarter;
 
 var towers: Array = []
 var units: Array = []
@@ -116,3 +116,4 @@ func add_new_item(selectedPosition: Vector3) -> bool:
 	
 func attack_hq(attacker: Unit) -> void:
 	print("Attacked HQ")
+	HQ.HP -= 0.01
