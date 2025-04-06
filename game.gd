@@ -1,7 +1,5 @@
 extends Node3D
 
-var terrainScene = preload("res://Map/terrain1.tscn")
-
 @onready var camera = $Camera3D
 
 var terrain: Node3D
@@ -9,19 +7,18 @@ var gridmap: GridMap
 var highlight: Node3D
 
 func _ready() -> void:
-	terrain = terrainScene.instantiate() as Node3D
-	gridmap = terrain.find_child("GridMap") as GridMap
-	highlight = terrain.find_child("Highlight") as Node3D
-	add_child(terrain)
-	
+	add_child(Map.scene)
+	gridmap = Map.scene.find_child("GridMap") as GridMap
+	highlight = Map.scene.find_child("Highlight") as Node3D
+
 	Map.game = self
-	Map.add_to_scene()
 	Player.IngameMenu = find_child("IngameMenu")
 	Player.ready()
 
 func _process(_delta: float) -> void:
 	Map.towers_attack()
 	
+	# Place towers
 	if (Player.HasPlacement):
 		var hover = get_hovered_grid_position()
 		if hover != null:

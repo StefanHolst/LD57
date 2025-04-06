@@ -1,51 +1,55 @@
-extends Node
+extends Node3D
 
 var floorScene = preload("res://Map/FloorScene.tscn")
 var routeScene = preload("res://Map/RouteScene.tscn")
 var soldierScene = preload("res://Units/SoldierScene.tscn")
 var tankScene = preload("res://Units/TankScene.tscn")
 var explosion = preload("res://explosion.tscn")
+var mapScene = preload("res://Map/MapScene.tscn")
 
 var game: Node3D
+var scene: Node3D
 
 var towers: Array = []
 var units: Array = []
 var projectiles: Array = []
+
+var newUnits: Array = []
+var target = Vector3(0,0,0)
+var spawn_point = convertVector(Vector3(-10, 1, 10))
+var spawn_interval = 0.2 # seconds
+
+func _init() -> void:
+	scene = mapScene.instantiate()
+	
+	## Create test units
+	for i in range(0, 1000):
+		var unit = soldierScene.instantiate()
+		unit.position = spawn_point
+		unit.target = target
+		newUnits.insert(randi() % (newUnits.size() + 1), unit)
+	for i in range(0, 1000):
+		var unit = tankScene.instantiate()
+		unit.position = spawn_point
+		unit.target = target
+		newUnits.insert(randi() % (newUnits.size() + 1), unit)
+
+var last_unit_add: float = 0
+func _process(delta: float) -> void:
+	last_unit_add -= delta
+	if (last_unit_add < 0):# and units.size() < 300):
+		last_unit_add = spawn_interval
+		var unit = newUnits.pop_front()
+		if unit != null:
+			units.append(unit)
+			add_child(unit)
+	pass
 
 func convertVector(v: Vector3) -> Vector3:
 	var x2 = v.x * 2 + 1
 	var y2 = v.y * 2 + 1
 	var z2 = v.z * 2 + 1
 	return Vector3(x2, y2, z2)
-
-func add_to_scene():
-	var target = Vector3(0,0,0)
-	var spawn_point = convertVector(Vector3(-10, 1, 10))
-
-	# Create test towers
-	#var tower1 = LaserTower.new()
-	#tower1.position = convertVector(Vector3(0, 1, 2))
-	#towers.append(tower1)
-	#game.add_child(tower1)
-	#var tower2 = LaserTower.new()
-	#tower2.position = convertVector(Vector3(-3, 1, 0))
-	#towers.append(tower2)
-	#game.add_child(tower2)
-
-	## Create test units
-	for i in range(0, 100):
-		var unit = soldierScene.instantiate()
-		unit.position = spawn_point
-		unit.target = target
-		units.append(unit)
-		game.add_child(unit)
-		await get_tree().create_timer(0.5).timeout
-	for i in range(0, 1):
-		var unit = tankScene.instantiate()
-		unit.position = spawn_point
-		unit.target = target
-		units.append(unit)
-		game.add_child(unit)
 
 func add_projectile(p: Projectile):
 	projectiles.append(p)
@@ -54,7 +58,8 @@ func add_projectile(p: Projectile):
 
 func remove_unit(unit: Unit) -> void:
 	units.erase(unit)
-	game.remove_child(unit)
+	remove_child(unit)
+	unit.queue_free()
 	Player.UnitsKilled += 1
 	Player.Money += unit.sell_value
 
