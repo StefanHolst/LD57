@@ -10,6 +10,8 @@ var mapScene = preload("res://Map/MapScene.tscn")
 var game: Node3D
 var scene: Node3D
 
+var HQ: Node3D;
+
 var towers: Array = []
 var units: Array = []
 var projectiles: Array = []

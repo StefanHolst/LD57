@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0mg1lrbr7rid"]
+[gd_scene load_steps=7 format=3 uid="uid://b0mg1lrbr7rid"]
 
+[ext_resource type="Script" uid="uid://bhqucegr01a6e" path="res://Map/terrain_1.gd" id="1_gj1sx"]
 [ext_resource type="PackedScene" uid="uid://cdgbvh3obrjay" path="res://Map/Headquarter.tscn" id="1_f0tvd"]
 [ext_resource type="MeshLibrary" uid="uid://4p75p734ii0e" path="res://tilestilesT.tres" id="3_0mtrt"]
 
@@ -20,6 +21,7 @@ radius = 0.2
 height = 20.0
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_gj1sx")
 
 [node name="Headquarter" parent="." instance=ExtResource("1_f0tvd")]
 
