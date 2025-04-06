@@ -1,5 +1,7 @@
 extends Unit
 
+var explosion = preload("res://explosion.tscn")
+
 @onready var nav: NavigationAgent3D = $NavigationAgent3D;
 
 @export var target: Vector3
@@ -9,7 +11,23 @@ var accel = 10
 
 func _ready():
 	body = find_child("Body")
+	
+	nav.target_position = target
+	nav.target_desired_distance = 4
+	nav.target_reached.connect(attack)
 
+func attack() -> void:
+	print("Tank attacking")
+	
+	var expl = explosion.instantiate() as Node3D
+	expl.position = global_position
+	Map.add_child(expl)
+	
+	Map.attack_hq(self)
+	
+	Map.units.erase(self)
+	call_deferred("queue_free")
+	
 func _init() -> void:
 	max_health = 1000
 	health = max_health
