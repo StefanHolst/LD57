@@ -45,7 +45,6 @@ func _process(delta: float) -> void:
 		if unit != null:
 			units.append(unit)
 			add_child(unit)
-	pass
 
 func convertVector(v: Vector3) -> Vector3:
 	var x2 = v.x * 2 + 1

@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4hkyv5aeheib"]
+[gd_scene load_steps=7 format=3 uid="uid://c4hkyv5aeheib"]
 
 [ext_resource type="PackedScene" uid="uid://bwysx7nv56yu8" path="res://Assets/lasertowerv1.glb" id="1_nlsih"]
 [ext_resource type="PackedScene" uid="uid://1febycysn5o1" path="res://Assets/Rockettower.glb" id="2_q5hkw"]
+[ext_resource type="PackedScene" uid="uid://cclbv6ou4ewi7" path="res://Assets/Stunmine.glb" id="4_d43ul"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_q5hkw"]
 viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_i0k2f"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_v2ce7"]
 viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/BuyRocketTower/SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_okrkk"]
+viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/BuyStunMine/SubViewport3")
 
 [node name="IngameMenu" type="Node2D"]
 
@@ -85,12 +89,12 @@ text = "Buy Tower"
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Laser Tower"
+text = "Laser Tower (100 €)"
 
 [node name="BuyLaserTower" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("ViewportTexture_q5hkw")
-stretch_mode = 0
+stretch_mode = 4
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower"]
 own_world_3d = true
@@ -106,14 +110,14 @@ transform = Transform3D(1, 0, 0, 0, 0.813263, 0.581896, 0, -0.581896, 0.813263, 
 [node name="lasertowerv1" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower/SubViewport" instance=ExtResource("1_nlsih")]
 transform = Transform3D(-0.775242, 0, 0.631664, 0, 1, 0, -0.631664, 0, -0.775242, 0, 0, 0)
 
-[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Rocket Tower"
+text = "Rocket Tower (300 €)"
 
 [node name="BuyRocketTower" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("ViewportTexture_i0k2f")
-stretch_mode = 0
+texture_normal = SubResource("ViewportTexture_v2ce7")
+stretch_mode = 4
 
 [node name="SubViewport2" type="SubViewport" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyRocketTower"]
 own_world_3d = true
@@ -127,3 +131,25 @@ transform = Transform3D(1, 0, 0, 0, 0.957913, 0.28706, 0, -0.28706, 0.957913, 0,
 transform = Transform3D(1, 0, 0, 0, 0.813263, 0.581896, 0, -0.581896, 0.813263, 0, 3.27342, 3.14834)
 
 [node name="Rockettower" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyRocketTower/SubViewport2" instance=ExtResource("2_q5hkw")]
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stun Mine (25 €)"
+
+[node name="BuyStunMine" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_okrkk")
+stretch_mode = 4
+
+[node name="SubViewport3" type="SubViewport" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyStunMine"]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(100, 100)
+
+[node name="Camera3D2" type="Camera3D" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyStunMine/SubViewport3"]
+transform = Transform3D(1, 0, 0, 0, 0.7217, 0.692206, 0, -0.692206, 0.7217, 0, 0.976857, 1.17257)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyStunMine/SubViewport3"]
+transform = Transform3D(1, 0, 0, 0, 0.813263, 0.581896, 0, -0.581896, 0.813263, 0, 3.27342, 3.14834)
+
+[node name="Stunmine" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyStunMine/SubViewport3" instance=ExtResource("4_d43ul")]

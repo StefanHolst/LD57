@@ -16,6 +16,11 @@ var store = [
 		"title": "Rocket Tower (300 €)",
 		"price": 300,
 		"tower": RocketTower
+	},
+	{
+		"title": "Stun Mine (25 €)",
+		"price": 25,
+		"tower": StunMine
 	}
 ]
 
@@ -32,8 +37,9 @@ func ready():
 
 	var buyLaserTowerButton = IngameMenu.find_child("BuyLaserTower") as TextureButton
 	buyLaserTowerButton.pressed.connect(_on_buy.bind(0))
-	var buyRocketTowerButton = IngameMenu.find_child("BuyRocketTower") as TextureButton
-	buyRocketTowerButton.pressed.connect(_on_buy.bind(1))
+	IngameMenu.find_child("BuyLaserTower").pressed.connect(_on_buy.bind(0))
+	IngameMenu.find_child("BuyRocketTower").pressed.connect(_on_buy.bind(1))
+	IngameMenu.find_child("BuyStunMine").pressed.connect(_on_buy.bind(2))
 
 func _setupMenu():
 	_buyMenu.connect("id_pressed", Callable(self, "_on_buy"))

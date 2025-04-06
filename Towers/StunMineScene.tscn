@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://4jo0hxin6ga8"]
+
+[ext_resource type="PackedScene" uid="uid://cclbv6ou4ewi7" path="res://Assets/Stunmine.glb" id="1_1m2ph"]
+
+[node name="StunMineScene" type="Node3D"]
+
+[node name="Stunmine" parent="." instance=ExtResource("1_1m2ph")]
