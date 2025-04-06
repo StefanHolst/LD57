@@ -4,6 +4,7 @@ var floorScene = preload("res://Map/FloorScene.tscn")
 var routeScene = preload("res://Map/RouteScene.tscn")
 var terrain1 = preload("res://Map/terrain1.tscn")
 var soldierScene = preload("res://Units/SoldierScene.tscn")
+var tankScene = preload("res://Units/TankScene.tscn")
 
 var game: Node3D
 
@@ -31,8 +32,13 @@ func _init(_game: Node3D) -> void:
 	towers.append(tower2)
 #
 	## Create test units
-	for i in range(0, 30):
+	for i in range(0, 10):
 		var unit = soldierScene.instantiate()
+		unit.position = Vector3(-1, 3, 10 + i)
+		unit.target = target
+		units.append(unit)
+	for i in range(0, 10):
+		var unit = tankScene.instantiate()
 		unit.position = Vector3(-1, 3, 10 + i)
 		unit.target = target
 		units.append(unit)

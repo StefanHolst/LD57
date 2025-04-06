@@ -10,26 +10,11 @@ var accel = 10
 func _ready():
 	healthBar = find_child("HealthBar")
 	body = find_child("Body")
-	var player = find_child("AnimationPlayer")
-	var animation = player.get_animation("enemy_animations")
-	var start = animation.get_marker_time("WalkStart")
-	var end = animation.get_marker_time("WalkEnd")
-	var duration = end - start;
-	
-	while true:
-		var tree = get_tree()
-		if (tree == null):
-			print("wtf")
-			break
-		player.play("enemy_animations")
-		player.seek(start, true)
-		await get_tree().create_timer(duration).timeout
-	player.stop()
-#AnimationMixer (at: SoldierScene.tscn): 'metarigAction', couldn't resolve track:  'metarig/Skeleton3D:toe.L'. This warning can be disabled in Project Settings.
+
 func _init() -> void:
-	max_health = 100
+	max_health = 1000
 	health = max_health
-	speed = 2
+	speed = 1
 
 	upgrade_cost = 50
 	upgrade_health = 20
@@ -39,11 +24,10 @@ func _init() -> void:
 	sell_value = 100
 
 func _physics_process(delta: float) -> void:
-	var direction = Vector3();
-	
 	if (target == null):
 		return
 	
+	var direction = Vector3();
 	nav.target_position = target
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()

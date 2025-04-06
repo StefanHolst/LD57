@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7vrwqgac2rk2"]
 
-[ext_resource type="Script" uid="uid://gucfim828vh" path="res://game.gd" id="1_wbfu4"]
-[ext_resource type="Script" uid="uid://bihadpnsc66c5" path="res://camera_3d.gd" id="2_xkndl"]
+[ext_resource type="Script" uid="uid://kg53uy8ceyik" path="res://game.gd" id="1_wbfu4"]
+[ext_resource type="Script" uid="uid://cknlfvn5weqw6" path="res://camera_3d.gd" id="2_xkndl"]
 
 [sub_resource type="Environment" id="Environment_wbfu4"]
 glow_enabled = true
