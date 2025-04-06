@@ -114,3 +114,5 @@ func add_new_item(selectedPosition: Vector3) -> bool:
 	
 	return true
 	
+func attack_hq(attacker: Unit) -> void:
+	print("Attacked HQ")
