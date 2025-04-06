@@ -41,4 +41,4 @@ visible = false
 mesh = SubResource("CapsuleMesh_gj1sx")
 
 [node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.932421, 2.21708, 45.4203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176018, 3.4975, 45.4203)
