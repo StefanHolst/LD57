@@ -1,4 +1,4 @@
-class_name Map
+extends Node
 
 var floorScene = preload("res://Map/FloorScene.tscn")
 var routeScene = preload("res://Map/RouteScene.tscn")
@@ -17,18 +17,17 @@ var towers: Array = []
 var units: Array = []
 var projectiles: Array = []
 
-func _init(_game: Node3D) -> void:
-	game = _game
+func _init() -> void:
 	var terrain = terrain1.instantiate()
 	map_floor.append(terrain)
 	
 	var target = Vector3(0,0,0)
 
 	# Create test towers
-	var tower1 = LaserTower.new(self)
+	var tower1 = LaserTower.new()
 	tower1.position = Vector3(1, 3, 5)
 	towers.append(tower1)
-	var tower2 = LaserTower.new(self)
+	var tower2 = LaserTower.new()
 	tower2.position = Vector3(-5, 3, 3)
 	towers.append(tower2)
 #

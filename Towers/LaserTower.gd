@@ -10,8 +10,7 @@ var instance: Node3D;
 var turret: Node3D;
 var barrel: Node3D;
 
-func _init(_map: Map) -> void:
-	super(_map)
+func _init() -> void:
 	instance = laserTowerModel.instantiate()
 	self.add_child(instance)
 	
@@ -52,7 +51,7 @@ func attack(unit: Unit) -> Node3D:
 	player.play()
 
 	# create projectile
-	var p = LaserProjectile.new(map, barrel.global_position, unit.position)
+	var p = LaserProjectile.new(barrel.global_position, unit.position)
 	p.damage = attack_damage
-	map.add_projectile(p)
+	Map.add_projectile(p)
 	return null
