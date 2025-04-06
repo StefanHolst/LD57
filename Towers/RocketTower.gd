@@ -1,9 +1,11 @@
 class_name RocketTower extends Tower
 
-var rocketTowerScene = preload("res://Towers/RocketTowerScene.tscn")
+var rockerTowerModel = preload("res://Assets/Rockettower.glb")
+var instance: Node3D;
 
 func _init() -> void:
-	self.add_child(rocketTowerScene.instantiate() as Node3D)
+	instance = rockerTowerModel.instantiate()
+	self.add_child(instance)
 
 	attack_range = 200
 	attack_damage = 50
@@ -23,10 +25,12 @@ func attack(unit: Unit) -> Node3D:
 	if (last_fire + attack_speed > Time.get_ticks_msec()):
 		return null
 	last_fire = Time.get_ticks_msec()
+	
+	var player = instance.find_child("AnimationPlayer") as AnimationPlayer
+	player.get_animation_list()
+	player.play()
 
-	# create projectile
-	var p = LaserProjectile.new(Vector3.ZERO, Vector3.ZERO)
-	p.position = Vector3(1,2,1)
+	var p = Rocket.new(global_position, quaternion.from_euler(Vector3(PI/2,0,0)), unit)
 	p.damage = attack_damage
 	Map.add_projectile(p)
 	return null
