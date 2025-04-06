@@ -33,8 +33,9 @@ func _init() -> void:
 	sell_value = 150
 
 func _process(_delta: float) -> void:
-	barrel.look_at(Target.position)
-	turret.look_at(Vector3(Target.position.x, turret.global_position.y, Target.position.z))
+	if Target != null:
+		barrel.look_at(Target.position)
+		turret.look_at(Vector3(Target.position.x, turret.global_position.y, Target.position.z))
 
 var last_fire: float
 func attack(unit: Unit) -> Node3D:
