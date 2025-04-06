@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bca0bm5iyyeu"]
+
+[ext_resource type="Script" uid="uid://cj4koy0vrk47b" path="res://Units/Tank.gd" id="1_b3j4l"]
+[ext_resource type="PackedScene" uid="uid://cd0narsh2xi5t" path="res://Assets/shittank.glb" id="2_b3j4l"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nq7dk"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l022"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw74r"]
+bg_color = Color(0.626798, 0.0659753, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3fnpq"]
+size = Vector3(0.4, 0.4, 1)
+
+[node name="Body2" type="CharacterBody3D"]
+script = ExtResource("1_b3j4l")
+
+[node name="shittank" parent="." instance=ExtResource("2_b3j4l")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63507, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_nq7dk")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(100, 23)
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+visible = false
+offset_right = 100.0
+offset_bottom = 23.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6l022")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iw74r")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3fnpq")
