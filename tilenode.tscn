@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqa7tv67cxvam"]
+
+[ext_resource type="PackedScene" uid="uid://63w77b33tb0i" path="res://Assets/GroundBlue.glb" id="1_leiyb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dvpn0"]
+
+[node name="tilenode" type="Node3D"]
+
+[node name="GroundBlue" parent="." instance=ExtResource("1_leiyb")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GroundBlue"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundBlue/StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_dvpn0")
