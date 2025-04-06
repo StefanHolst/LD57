@@ -39,7 +39,7 @@ func _init(_game: Node3D) -> void:
 		units.append(unit)
 	for i in range(0, 10):
 		var unit = tankScene.instantiate()
-		unit.position = Vector3(-1, 3, 10 + i)
+		unit.position = Vector3(-21, 5 + i, 26)
 		unit.target = target
 		units.append(unit)
 
