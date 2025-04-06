@@ -2,7 +2,7 @@ extends Camera3D
 
 @export var target: Vector3 = Vector3.ZERO
 @export var distance := 30.0
-@export var min_distance := 20.0
+@export var min_distance := 12.0
 @export var max_distance := 150.0
 @export var zoom_speed := 1.0
 @export var rotate_speed := 0.01
@@ -12,16 +12,17 @@ var horizontal_angle := 0.0
 var vertical_angle := 0.6
 var rotating := false
 
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 func _input(event):
-	# Rotating the mouse
-	if event is InputEventMouseMotion:
+	# Start or stop rotation
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			rotating = event.pressed
+	# Rotation
+	if event is InputEventMouseMotion and rotating:
 		horizontal_angle -= event.relative.x * rotate_speed
-		vertical_angle = clamp(vertical_angle - event.relative.y * rotate_speed,
-							   vertical_angle_limit.x, vertical_angle_limit.y)
-
+		var verticalMin = vertical_angle_limit.x
+		var verticalMax = vertical_angle_limit.y
+		vertical_angle = clamp(vertical_angle - event.relative.y * rotate_speed, verticalMin, verticalMax)
 	# Zoom on scroll
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
 		distance = max(min_distance, distance - zoom_speed)
@@ -30,10 +31,6 @@ func _input(event):
 	elif event is InputEventPanGesture:
 		# Negative y is zoom in, positive y is zoom out
 		distance = clamp(distance + event.delta.y * 0.05, min_distance, max_distance)
-
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_ESCAPE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _process(delta):
 	# Calculate spherical offset from angles and distance

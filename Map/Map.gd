@@ -21,14 +21,14 @@ func _init(_game: Node3D) -> void:
 	var terrain = terrain1.instantiate()
 	map_floor.append(terrain)
 	
-	var target = Vector3(-7,4,2)
+	var target = Vector3(0,0,0)
 
 	# Create test towers
 	var tower1 = LaserTower.new(self)
-	tower1.position = Vector3(1, 4, 5)
+	tower1.position = Vector3(1, 3, 5)
 	towers.append(tower1)
 	var tower2 = LaserTower.new(self)
-	tower2.position = Vector3(-5, 4, 3)
+	tower2.position = Vector3(-5, 3, 3)
 	towers.append(tower2)
 #
 	## Create test units
