@@ -10,21 +10,8 @@ var accel = 10
 func _ready():
 	healthBar = find_child("HealthBar")
 	body = find_child("Body")
-	var player = find_child("AnimationPlayer")
-	var animation = player.get_animation("enemy_animations")
-	var start = animation.get_marker_time("WalkStart")
-	var end = animation.get_marker_time("WalkEnd")
-	var duration = end - start;
-	
-	while true:
-		var tree = get_tree()
-		if (tree == null):
-			print("wtf")
-			break
-		player.play("enemy_animations")
-		player.seek(start, true)
-		await get_tree().create_timer(duration).timeout
-	player.stop()
+	var player = find_child("AnimationPlayer") as AnimationPlayer
+	player.play_section_with_markers("enemy_animations", "WalkStart", "WalkEnd")
 
 func _init() -> void:
 	max_health = 100
