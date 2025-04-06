@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=31 format=4 uid="uid://4p75p734ii0e"]
+[gd_resource type="MeshLibrary" load_steps=36 format=4 uid="uid://4p75p734ii0e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lc5n"]
 resource_name = "glow"
@@ -81,6 +81,8 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_u6j3e"]
 image = SubResource("Image_2c1h0")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2c1h0"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3qhu8"]
 resource_name = "glow"
 cull_mode = 2
@@ -161,6 +163,8 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_t26m4"]
 image = SubResource("Image_d1xyi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d1xyi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ehjq"]
 resource_name = "glow"
@@ -243,6 +247,8 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_j83wy"]
 image = SubResource("Image_5fuq5")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5fuq5"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54mbv"]
 resource_name = "glow"
 cull_mode = 2
@@ -323,6 +329,8 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_64eq3"]
 image = SubResource("Image_08de1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_08de1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anni2"]
 resource_name = "glow"
@@ -405,12 +413,14 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_qqerc"]
 image = SubResource("Image_opwx8")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_opwx8"]
+
 [resource]
 item/0/name = "Blue"
 item/0/mesh = SubResource("ArrayMesh_fgb6s")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/mesh_cast_shadow = 1
-item/0/shapes = []
+item/0/shapes = [SubResource("BoxShape3D_2c1h0"), Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)]
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 item/0/preview = SubResource("ImageTexture_u6j3e")
@@ -418,7 +428,7 @@ item/1/name = "Green"
 item/1/mesh = SubResource("ArrayMesh_pw2l6")
 item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/mesh_cast_shadow = 1
-item/1/shapes = []
+item/1/shapes = [SubResource("BoxShape3D_d1xyi"), Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)]
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
 item/1/preview = SubResource("ImageTexture_t26m4")
@@ -426,7 +436,7 @@ item/2/name = "Pink"
 item/2/mesh = SubResource("ArrayMesh_yu4we")
 item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/mesh_cast_shadow = 1
-item/2/shapes = []
+item/2/shapes = [SubResource("BoxShape3D_5fuq5"), Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)]
 item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/navigation_layers = 1
 item/2/preview = SubResource("ImageTexture_j83wy")
@@ -434,7 +444,7 @@ item/3/name = "Red"
 item/3/mesh = SubResource("ArrayMesh_p8krg")
 item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/mesh_cast_shadow = 1
-item/3/shapes = []
+item/3/shapes = [SubResource("BoxShape3D_08de1"), Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)]
 item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/navigation_layers = 1
 item/3/preview = SubResource("ImageTexture_64eq3")
@@ -442,7 +452,7 @@ item/4/name = "Yellow"
 item/4/mesh = SubResource("ArrayMesh_t2hji")
 item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/mesh_cast_shadow = 1
-item/4/shapes = []
+item/4/shapes = [SubResource("BoxShape3D_opwx8"), Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)]
 item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/navigation_layers = 1
 item/4/preview = SubResource("ImageTexture_qqerc")

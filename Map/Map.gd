@@ -19,7 +19,6 @@ func convertVector(v: Vector3) -> Vector3:
 	return Vector3(x2, y2, z2)
 
 func add_to_scene():
-	
 	var target = Vector3(0,0,0)
 	var spawn_point = convertVector(Vector3(-10, 1, 10))
 
@@ -87,3 +86,9 @@ func add_damage(position: Vector3, projectile: Projectile) -> void:
 				exp.position = unit.position
 				game.add_child(exp)
 				remove_unit(unit)
+
+func add_player_tower(position: Vector3):
+	var tower = Player.NewTower.new()
+	tower.position = Vector3(position.x, 3, position.z)
+	towers.append(tower)
+	game.add_child(tower)

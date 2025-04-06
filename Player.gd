@@ -9,11 +9,13 @@ var _buyMenu: PopupMenu
 var store = [
 	{
 		"title": "Laser Tower (100 €)",
-		"price": 100
+		"price": 100,
+		"tower": LaserTower
 	},
 	{
 		"title": "Rocket Tower (300 €)",
-		"price": 300
+		"price": 300,
+		"tower": RocketTower
 	}
 ]
 
@@ -41,14 +43,12 @@ var Money: float :
 	set(value):
 		_money = value
 		_moneyLabel.text = str(value)
-
 var _health: int = 5
 var Health: int:
 	get:
 		return _health
 	set(value):
 		_health = value
-
 var _unit_killed: int = 0
 var UnitsKilled : int :
 	get:
@@ -64,8 +64,13 @@ var ShotsFired : int :
 		_shots_fired = value
 		_shotsFiredLabel.text = str(value)
 
+var HasPlacement: bool = false
+var NewTower: Variant
+
 func _on_buy(id):
 	var item = store[id]
 	var price = item["price"]
 	if Money >= price:
 		Money -= price
+		HasPlacement = true
+		NewTower = item["tower"]

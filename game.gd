@@ -5,9 +5,13 @@ var terrainScene = preload("res://Map/terrain1.tscn")
 @onready var camera = $Camera3D
 
 var terrain: Node3D
+var gridmap: GridMap
+var highlight: Node3D
 
 func _ready() -> void:
 	terrain = terrainScene.instantiate() as Node3D
+	gridmap = terrain.find_child("GridMap") as GridMap
+	highlight = terrain.find_child("Highlight") as Node3D
 	add_child(terrain)
 	
 	Map.game = self
@@ -17,8 +21,22 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	Map.towers_attack()
-	var hover = get_hovered_grid_position()
-	#print(hover)
+	
+	if (Player.HasPlacement):
+		var hover = get_hovered_grid_position()
+		if hover != null:
+			highlight.visible = true
+			highlight.position = hover
+		else:
+			highlight.visible = false
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and Player.HasPlacement and highlight.visible:
+			print("place something")
+			Player.HasPlacement = false
+			highlight.visible = false
+			Map.add_player_tower(highlight.position)
 
 func get_hovered_grid_position():
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -26,16 +44,20 @@ func get_hovered_grid_position():
 	var to = from + camera.project_ray_normal(mouse_pos) * 1000
 
 	var space_state = get_world_3d().direct_space_state
-	var t = PhysicsRayQueryParameters3D.create(from, to, 0xFFFFFFFF, [])
-	t.collide_with_areas = true
-	t.hit_from_inside = true
-	var result = space_state.intersect_ray(t)
-	print(result)
+	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to, 0xFFFFFFFF, []))
 
 	if result and result.has("position"):
-		print(result)
-		#var hit_position = result.position
-		#var cell = terrain.world_to_map(hit_position)
-		#return cell
+		var hit_position = result.position
+		var cell = world_to_cell(hit_position)
+		return cell
 
 	return null
+
+func world_to_cell(world_pos: Vector3) -> Vector3i:
+	var local_pos = gridmap.to_local(world_pos)
+	var cell_size = gridmap.cell_size
+	return Vector3i(
+		floor(local_pos.x / cell_size.x) * 2 + 1,
+		floor(local_pos.y / cell_size.y) * 2 + 1,
+		floor(local_pos.z / cell_size.z) * 2 + 1
+	)
