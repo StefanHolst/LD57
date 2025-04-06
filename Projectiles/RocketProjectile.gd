@@ -19,11 +19,11 @@ enum State
 var state: State = State.Launch;
 var stateTimeLeft: float = 0;
 
-func _init(start_pos: Vector3, rot: Quaternion, target: Node3D, minDistance: float = 2) -> void:
+func _init(start_pos: Vector3, rot: Quaternion, targetUnit: Node3D, minDistance: float = 2) -> void:
 	position = start_pos
 	rotation = rot.get_euler()
-	trackTarget = target
-	self.target = target.global_position
+	trackTarget = targetUnit
+	self.target = targetUnit.global_position
 	
 	state = State.Launch;
 	stateTimeLeft = 0.5;
@@ -67,7 +67,7 @@ func _process(_delta: float) -> void:
 		hp.y = global_position.y
 		var dir_target = hp - global_position
 		var dist = dir_target.length_squared()
-		var dir_rocket = transform.basis.slerp(basis.looking_at(dir_target), _delta*speed*INERTIA)
+		var dir_rocket = transform.basis.slerp(Basis.looking_at(dir_target), _delta*speed*INERTIA)
 		rotation = dir_rocket.get_euler()
 		
 		if dist < track_distance:
@@ -77,16 +77,16 @@ func _process(_delta: float) -> void:
 		var targetPos = get_target()
 		var dir_target = targetPos - global_position
 		var dist = dir_target.length_squared()
-		var dir_rocket = transform.basis.slerp(basis.looking_at(dir_target), _delta*speed*INERTIA)
+		var dir_rocket = transform.basis.slerp(Basis.looking_at(dir_target), _delta*speed*INERTIA)
 		rotation = dir_rocket.get_euler()
 	
 		if dist < MinDistance:
 			print("Hit target")
 			Map.add_damage(targetPos, self)
 			
-			var exp = explosion.instantiate() as Node3D
-			exp.position = targetPos
-			Map.add_child(exp)
+			var expl = explosion.instantiate() as Node3D
+			expl.position = targetPos
+			Map.add_child(expl)
 
 			self.call_deferred("queue_free")
 	

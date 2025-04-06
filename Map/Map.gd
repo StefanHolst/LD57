@@ -82,9 +82,9 @@ func add_damage(position: Vector3, projectile: Projectile) -> void:
 			unit.healthBar.value = healthPercent
 			unit.healthBar.visible = true
 			if (unit.health <= 0):
-				var exp = explosion.instantiate()
-				exp.position = unit.position
-				game.add_child(exp)
+				var expl = explosion.instantiate()
+				expl.position = unit.position
+				game.add_child(expl)
 				remove_unit(unit)
 
 func add_player_tower(position: Vector3):

@@ -13,6 +13,6 @@ var upgrade_attack_speed: float
 var cost: int
 var sell_value: int
 
-func attack(unit: Unit) -> Node3D:
+func attack(_unit: Unit) -> Node3D:
 	push_error("Abstract method 'attack' must be implemented by subclass.")
 	return null

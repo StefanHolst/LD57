@@ -32,7 +32,7 @@ func _input(event):
 		# Negative y is zoom in, positive y is zoom out
 		distance = clamp(distance + event.delta.y * 0.05, min_distance, max_distance)
 
-func _process(delta):
+func _process(_delta):
 	# Calculate spherical offset from angles and distance
 	var offset = Vector3(
 		distance * cos(vertical_angle) * sin(horizontal_angle),
