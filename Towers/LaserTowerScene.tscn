@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://4ex8unceg1af"]
+[gd_scene load_steps=3 format=3 uid="uid://4ex8unceg1af"]
+
+[ext_resource type="PackedScene" uid="uid://bwysx7nv56yu8" path="res://Assets/lasertowerv1.glb" id="1_q7k4h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q7k4h"]
+size = Vector3(1.4, 3, 1.4)
 
 [node name="LaserTowerScene" type="Node3D"]
+
+[node name="lasertowerv1" parent="." instance=ExtResource("1_q7k4h")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="lasertowerv1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lasertowerv1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_q7k4h")

@@ -2,7 +2,6 @@ extends Node
 
 var floorScene = preload("res://Map/FloorScene.tscn")
 var routeScene = preload("res://Map/RouteScene.tscn")
-var terrain1 = preload("res://Map/terrain1.tscn")
 var soldierScene = preload("res://Units/SoldierScene.tscn")
 var tankScene = preload("res://Units/TankScene.tscn")
 var explosion = preload("res://explosion.tscn")
@@ -20,8 +19,6 @@ func convertVector(v: Vector3) -> Vector3:
 	return Vector3(x2, y2, z2)
 
 func add_to_scene():
-	var terrain = terrain1.instantiate()
-	game.add_child(terrain)
 	
 	var target = Vector3(0,0,0)
 	var spawn_point = convertVector(Vector3(-10, 1, 10))

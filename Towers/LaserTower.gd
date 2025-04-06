@@ -4,7 +4,7 @@ class_name LaserTower extends Tower
 
 var laserSound = preload("res://Sounds/Laser_Shoot10.wav")
 
-var laserTowerModel = preload("res://Assets/lasertowerv1.glb")
+var laserTowerModel = preload("res://Towers/LaserTowerScene.tscn")
 var player: AudioStreamPlayer3D;
 var instance: Node3D;
 var turret: Node3D;
