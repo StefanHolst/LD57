@@ -5,3 +5,5 @@
 *.blend1
 *.uid
 *.import
+bin/
+obj/

@@ -18,11 +18,13 @@ var projectiles: Array = []
 
 var newUnits: Array = []
 var target = Vector3(0,0,0)
-var spawn_point = convertVector(Vector3(-10, 1, 10))
+var spawn_point: Vector3
 var spawn_interval = 0.2 # seconds
 
 func _init() -> void:
 	scene = mapScene.instantiate()
+	var spawn = scene.find_child("SpawnPoint") as Node3D
+	spawn_point = spawn.position
 	
 	## Create test units
 	for i in range(0, 1000):
@@ -39,7 +41,7 @@ func _init() -> void:
 var last_unit_add: float = 0
 func _process(delta: float) -> void:
 	last_unit_add -= delta
-	if (last_unit_add < 0):# and units.size() < 300):
+	if (last_unit_add < 0 and units.size() < 300):
 		last_unit_add = spawn_interval
 		var unit = newUnits.pop_front()
 		if unit != null:
