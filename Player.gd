@@ -28,7 +28,12 @@ func ready():
 	_shotsFiredLabel.text = str(ShotsFired)
 	var menu = IngameMenu.find_child("BuyMenu") as MenuButton
 	_buyMenu = menu.get_popup()
-	_setupMenu()
+	#_setupMenu()
+
+	var buyLaserTowerButton = IngameMenu.find_child("BuyLaserTower") as TextureButton
+	buyLaserTowerButton.pressed.connect(_on_buy.bind(0))
+	var buyRocketTowerButton = IngameMenu.find_child("BuyRocketTower") as TextureButton
+	buyRocketTowerButton.pressed.connect(_on_buy.bind(1))
 
 func _setupMenu():
 	_buyMenu.connect("id_pressed", Callable(self, "_on_buy"))

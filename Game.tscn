@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://kg53uy8ceyik" path="res://game.gd" id="1_wbfu4"]
 [ext_resource type="Script" uid="uid://xwbaymrldsbp" path="res://camera_3d.gd" id="2_xkndl"]
-[ext_resource type="PackedScene" uid="uid://c4hkyv5aeheib" path="res://Map/IngameMenu.tscn" id="3_u44n3"]
+[ext_resource type="PackedScene" uid="uid://c4hkyv5aeheib" path="res://Menu/IngameMenu.tscn" id="3_u44n3"]
 
 [sub_resource type="Environment" id="Environment_wbfu4"]
 glow_enabled = true

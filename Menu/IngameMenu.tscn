@@ -1,0 +1,129 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4hkyv5aeheib"]
+
+[ext_resource type="PackedScene" uid="uid://bwysx7nv56yu8" path="res://Assets/lasertowerv1.glb" id="1_nlsih"]
+[ext_resource type="PackedScene" uid="uid://1febycysn5o1" path="res://Assets/Rockettower.glb" id="2_q5hkw"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_q5hkw"]
+viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i0k2f"]
+viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/BuyRocketTower/SubViewport2")
+
+[node name="IngameMenu" type="Node2D"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 120.0
+offset_bottom = 101.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Menu"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Stats" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer"]
+layout_mode = 2
+text = "€:"
+
+[node name="Money" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer3"]
+layout_mode = 2
+text = "Units Killed:"
+
+[node name="UnitsKilled" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer3"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer2"]
+layout_mode = 2
+text = "Shots Fired:"
+
+[node name="ShotsFired" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Buy Towers"
+
+[node name="BuyMenu" type="MenuButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Buy Tower"
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Laser Tower"
+
+[node name="BuyLaserTower" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_q5hkw")
+stretch_mode = 0
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower"]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(200, 200)
+
+[node name="Camera3D2" type="Camera3D" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.918584, 0.395225, 0, -0.395225, 0.918584, 0, 1.96882, 2.53595)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.813263, 0.581896, 0, -0.581896, 0.813263, 0, 3.27342, 3.14834)
+
+[node name="lasertowerv1" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower/SubViewport" instance=ExtResource("1_nlsih")]
+transform = Transform3D(-0.775242, 0, 0.631664, 0, 1, 0, -0.631664, 0, -0.775242, 0, 0, 0)
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Rocket Tower"
+
+[node name="BuyRocketTower" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("ViewportTexture_i0k2f")
+stretch_mode = 0
+
+[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyRocketTower"]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(200, 200)
+
+[node name="Camera3D2" type="Camera3D" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyRocketTower/SubViewport2"]
+transform = Transform3D(1, 0, 0, 0, 0.957913, 0.28706, 0, -0.28706, 0.957913, 0, 1.96882, 2.53595)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyRocketTower/SubViewport2"]
+transform = Transform3D(1, 0, 0, 0, 0.813263, 0.581896, 0, -0.581896, 0.813263, 0, 3.27342, 3.14834)
+
+[node name="Rockettower" parent="HBoxContainer/VBoxContainer/VBoxContainer/BuyRocketTower/SubViewport2" instance=ExtResource("2_q5hkw")]
