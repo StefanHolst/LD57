@@ -11,6 +11,7 @@ func _ready():
 	healthBar = find_child("HealthBar")
 	body = find_child("Body")
 	var player = find_child("AnimationPlayer") as AnimationPlayer
+	await get_tree().create_timer(randf()).timeout
 	player.play_section_with_markers("enemy_animations", "WalkStart", "WalkEnd")
 
 func _init() -> void:

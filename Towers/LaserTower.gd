@@ -49,6 +49,8 @@ func attack(unit: Unit) -> Node3D:
 	print("Attacking unit: ", unit)
 	
 	player.stream = laserSound;
+	player.volume_db = -9;
+	player.pitch_scale = randf_range(0.9, 1.1)
 	player.play()
 
 	# create projectile

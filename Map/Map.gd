@@ -5,6 +5,7 @@ var routeScene = preload("res://Map/RouteScene.tscn")
 var terrain1 = preload("res://Map/terrain1.tscn")
 var soldierScene = preload("res://Units/SoldierScene.tscn")
 var tankScene = preload("res://Units/TankScene.tscn")
+var explosion = preload("res://explosion.tscn")
 
 var game: Node3D
 
@@ -94,4 +95,7 @@ func add_damage(position: Vector3, projectile: Projectile) -> void:
 			unit.healthBar.value = healthPercent
 			unit.healthBar.visible = true
 			if (unit.health <= 0):
+				var exp = explosion.instantiate()
+				exp.position = unit.position
+				game.add_child(exp)
 				remove_unit(unit)
