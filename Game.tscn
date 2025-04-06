@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c4hkyv5aeheib" path="res://Menu/IngameMenu.tscn" id="3_u44n3"]
 
 [sub_resource type="Environment" id="Environment_wbfu4"]
+background_mode = 1
+background_color = Color(0.0943044, 0.0943044, 0.0943044, 1)
 glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_xkndl"]
