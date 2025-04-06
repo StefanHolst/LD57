@@ -87,8 +87,17 @@ func add_damage(position: Vector3, projectile: Projectile) -> void:
 				game.add_child(expl)
 				remove_unit(unit)
 
-func add_player_tower(position: Vector3):
+func add_player_tower(position: Vector3) -> bool:
+	# check if a tower already exist
+	for tower in towers:
+		if tower.position.x == position.x and tower.position.z == position.z:
+			return false
+		#if position.is_equal_approx(tower.position):
+			#return false
+	
 	var tower = Player.NewTower.new()
 	tower.position = Vector3(position.x, 3, position.z)
 	towers.append(tower)
 	game.add_child(tower)
+	
+	return true

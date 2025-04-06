@@ -33,10 +33,9 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and Player.HasPlacement and highlight.visible:
-			print("place something")
-			Player.HasPlacement = false
-			highlight.visible = false
-			Map.add_player_tower(highlight.position)
+			if (Map.add_player_tower(highlight.position)):
+				Player.HasPlacement = false
+				highlight.visible = false
 
 func get_hovered_grid_position():
 	var mouse_pos = get_viewport().get_mouse_position()
