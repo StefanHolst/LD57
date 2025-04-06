@@ -25,8 +25,6 @@ func attack(unit: Unit) -> Node3D:
 		return null
 	last_fire = Time.get_ticks_msec()
 
-	print("Attacking unit: ", unit)
-
 	# create projectile
 	var p = LaserProjectile.new(map, Vector3.ZERO, Vector3.ZERO)
 	p.position = Vector3(1,2,1)

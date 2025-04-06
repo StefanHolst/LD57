@@ -57,10 +57,12 @@ func add_to_scene():
 func add_projectile(p: Projectile):
 	projectiles.append(p)
 	game.add_child(p)
+	Player.ShotsFired += 1
 
 func remove_unit(unit: Unit) -> void:
 	units.erase(unit)
 	game.remove_child(unit)
+	Player.UnitsKilled += 1
 
 func move_units(_delta: float) -> void:
 	if (route.size() == 0):
@@ -85,13 +87,11 @@ func towers_attack() -> void:
 			pass
 
 func add_damage(position: Vector3, projectile: Projectile) -> void:
-	print("Damage: ", projectile.damage)
 	# Find the unit at the position
 	for unit in units:
 		if (unit.position.distance_to(position) < projectile.range):
 			unit.health -= projectile.damage
 			var healthPercent = (unit.health / unit.max_health) * 100.0
-			print(healthPercent)
 			unit.healthBar.value = healthPercent
 			unit.healthBar.visible = true
 			if (unit.health <= 0):

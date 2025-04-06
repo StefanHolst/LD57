@@ -45,8 +45,6 @@ func attack(unit: Unit) -> Node3D:
 	if (last_fire + attack_speed > Time.get_ticks_msec()):
 		return null
 	last_fire = Time.get_ticks_msec()
-
-	print("Attacking unit: ", unit)
 	
 	player.stream = laserSound;
 	player.volume_db = -9;

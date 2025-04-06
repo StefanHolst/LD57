@@ -19,7 +19,6 @@ func _init(start_pos: Vector3, rot: Quaternion, target: Node3D, minDistance: flo
 func _process(_delta: float) -> void:
 	var dist = position.distance_squared_to(Target.position)
 	if dist < MinDistance:
-		print("Hit target")
 		evt.call(Target, self)
 		self.call_deferred("queue_free")
 	else:
