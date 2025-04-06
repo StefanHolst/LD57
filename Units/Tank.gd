@@ -25,7 +25,7 @@ func _ready():
 		player.seek(start, true)
 		await get_tree().create_timer(duration).timeout
 	player.stop()
-
+#AnimationMixer (at: SoldierScene.tscn): 'metarigAction', couldn't resolve track:  'metarig/Skeleton3D:toe.L'. This warning can be disabled in Project Settings.
 func _init() -> void:
 	max_health = 100
 	health = max_health
@@ -39,10 +39,11 @@ func _init() -> void:
 	sell_value = 100
 
 func _physics_process(delta: float) -> void:
+	var direction = Vector3();
+	
 	if (target == null):
 		return
 	
-	var direction = Vector3();
 	nav.target_position = target
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
