@@ -3,7 +3,5 @@
 /android/
 .idea/
 *.blend1
-*.uid
-*.import
 bin/
 obj/
