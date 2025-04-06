@@ -18,25 +18,27 @@ var projectiles: Array = []
 
 var newUnits: Array = []
 var target = Vector3(0,0,0)
-var spawn_point: Vector3
+var spawn_points: Array[Vector3] = []
 var spawn_interval = 0.2 # seconds
 
 func _init() -> void:
 	scene = mapScene.instantiate()
-	var spawn = scene.find_child("SpawnPoint") as Node3D
-	spawn_point = spawn.position
+	var spawn1 = scene.find_child("SpawnPoint1") as Node3D
+	var spawn2 = scene.find_child("SpawnPoint2") as Node3D
+	spawn_points.append(spawn1.position)
+	spawn_points.append(spawn2.position)
 	
 	## Create test units
 	for i in range(0, 1000):
 		var unit = soldierScene.instantiate()
-		unit.position = spawn_point
+		unit.position = spawn_points[randi() % 2]
 		unit.position.x += (randf() * 4 - 2)
 		unit.position.z += (randf() * 4 - 2)
 		unit.target = target
 		newUnits.insert(randi() % (newUnits.size() + 1), unit)
 	for i in range(0, 1000):
 		var unit = tankScene.instantiate()
-		unit.position = spawn_point
+		unit.position = spawn_points[randi() % 2]
 		unit.position.x += (randf() * 4 - 2)
 		unit.position.z += (randf() * 4 - 2)
 		unit.target = target

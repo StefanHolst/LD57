@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://07kkfn5jc0s2"]
 
-[ext_resource type="Script" uid="uid://dr2g16py3kn35" path="res://Units/Soldier.gd" id="1_ut408"]
+[ext_resource type="Script" uid="uid://dn5umnucacj3a" path="res://Units/Soldier.gd" id="1_ut408"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37gc4"]
 resource_name = "Body"

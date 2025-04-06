@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b0mg1lrbr7rid"]
 
 [ext_resource type="PackedScene" uid="uid://cdgbvh3obrjay" path="res://Map/Headquarter.tscn" id="1_f0tvd"]
-[ext_resource type="Script" uid="uid://cm6vc28wm72au" path="res://Map/terrain_1.gd" id="1_gj1sx"]
+[ext_resource type="Script" uid="uid://bhqucegr01a6e" path="res://Map/terrain_1.gd" id="1_gj1sx"]
 [ext_resource type="MeshLibrary" uid="uid://4p75p734ii0e" path="res://tilestilesT.tres" id="3_0mtrt"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_l8g64"]
@@ -40,5 +40,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_gj1sx")
 
-[node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176018, 3.4975, 45.4203)
+[node name="SpawnPoint1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.497, 45.42)
+
+[node name="SpawnPoint2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.497, -45.42)
