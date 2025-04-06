@@ -23,14 +23,14 @@ func add_to_scene():
 	var spawn_point = convertVector(Vector3(-10, 1, 10))
 
 	# Create test towers
-	var tower1 = LaserTower.new()
-	tower1.position = convertVector(Vector3(0, 1, 2))
-	towers.append(tower1)
-	game.add_child(tower1)
-	var tower2 = LaserTower.new()
-	tower2.position = convertVector(Vector3(-3, 1, 0))
-	towers.append(tower2)
-	game.add_child(tower2)
+	#var tower1 = LaserTower.new()
+	#tower1.position = convertVector(Vector3(0, 1, 2))
+	#towers.append(tower1)
+	#game.add_child(tower1)
+	#var tower2 = LaserTower.new()
+	#tower2.position = convertVector(Vector3(-3, 1, 0))
+	#towers.append(tower2)
+	#game.add_child(tower2)
 
 	## Create test units
 	for i in range(0, 100):

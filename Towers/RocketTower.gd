@@ -31,10 +31,10 @@ func attack(unit: Unit) -> Node3D:
 	player.play("lid1Action_001")
 	player2.play("lid2Action_001")
 	
-	await get_tree().create_timer(0.7).timeout
-
 	var p = Rocket.new(global_position, Quaternion.from_euler(Vector3(PI/2,0,0)), unit)
 	p.damage = attack_damage
+	await get_tree().create_timer(0.7).timeout
+
 	Map.add_projectile(p)
 	
 	player.play_backwards("lid1Action_001")

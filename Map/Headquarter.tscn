@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdgbvh3obrjay"]
+
+[ext_resource type="PackedScene" uid="uid://c5ewmmponwaek" path="res://Assets/towerv2.glb" id="1_eqxoe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_47xis"]
+size = Vector3(1.615, 11, 2.525)
+
+[node name="Headquarter" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+shape = SubResource("BoxShape3D_47xis")
+
+[node name="towerv2" parent="StaticBody3D/CollisionShape3D" instance=ExtResource("1_eqxoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.5, 0)

@@ -8,7 +8,6 @@ var body
 var accel = 10
 
 func _ready():
-	healthBar = find_child("HealthBar")
 	body = find_child("Body")
 
 func _init() -> void:

@@ -8,7 +8,6 @@ var body
 var accel = 10
 
 func _ready():
-	healthBar = find_child("HealthBar")
 	body = find_child("Body")
 	var player = find_child("AnimationPlayer") as AnimationPlayer
 	await get_tree().create_timer(randf()).timeout
