@@ -14,7 +14,7 @@ func _ready():
 func _init() -> void:
 	max_health = 1000
 	health = max_health
-	speed = 1
+	speed = 10
 
 	upgrade_cost = 50
 	upgrade_health = 20

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0mg1lrbr7rid"]
 
-[ext_resource type="PackedScene" uid="uid://dndaeja2vwds5" path="res://Assets/towerv2.glb" id="1_qjiw8"]
+[ext_resource type="PackedScene" uid="uid://coy72kedmcsc8" path="res://Assets/towerv2.glb" id="1_qjiw8"]
 [ext_resource type="MeshLibrary" uid="uid://4p75p734ii0e" path="res://tilestilesT.tres" id="2_gj1sx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_l8g64"]

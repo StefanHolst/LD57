@@ -2,8 +2,7 @@ class_name RocketTower extends Tower
 
 var rocketTowerScene = preload("res://Towers/RocketTowerScene.tscn")
 
-func _init(_map: Map) -> void:
-	super(_map)
+func _init() -> void:
 	self.add_child(rocketTowerScene.instantiate() as Node3D)
 
 	attack_range = 200
@@ -25,11 +24,9 @@ func attack(unit: Unit) -> Node3D:
 		return null
 	last_fire = Time.get_ticks_msec()
 
-	print("Attacking unit: ", unit)
-
 	# create projectile
-	var p = LaserProjectile.new(map, Vector3.ZERO, Vector3.ZERO)
+	var p = LaserProjectile.new(Vector3.ZERO, Vector3.ZERO)
 	p.position = Vector3(1,2,1)
 	p.damage = attack_damage
-	map.add_projectile(p)
+	Map.add_projectile(p)
 	return null
