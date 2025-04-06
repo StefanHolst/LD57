@@ -9,41 +9,9 @@ var explosion = preload("res://explosion.tscn")
 
 var game: Node3D
 
-var map_floor: Array = []
-var map_route: Array = []
-var route: Array = []
-var route_lookup = {}
 var towers: Array = []
 var units: Array = []
 var projectiles: Array = []
-
-func _init() -> void:
-	var terrain = terrain1.instantiate()
-	map_floor.append(terrain)
-	
-	var target = Vector3(0,0,0)
-
-	# Create test towers
-	var tower1 = LaserTower.new()
-	tower1.position = convertVector(Vector3(0, 1, 2))
-	towers.append(tower1)
-	var tower2 = LaserTower.new()
-	tower2.position = convertVector(Vector3(-3, 1, 0))
-	towers.append(tower2)
-
-	var spawn_point = convertVector(Vector3(-10, 1, 10))
-
-	## Create test units
-	for i in range(0, 1):
-		var unit = soldierScene.instantiate()
-		unit.position = spawn_point
-		unit.target = target
-		units.append(unit)
-	for i in range(0, 1):
-		var unit = tankScene.instantiate()
-		unit.position = spawn_point
-		unit.target = target
-		units.append(unit)
 
 func convertVector(v: Vector3) -> Vector3:
 	var x2 = v.x * 2 + 1
@@ -52,14 +20,36 @@ func convertVector(v: Vector3) -> Vector3:
 	return Vector3(x2, y2, z2)
 
 func add_to_scene():
-	for f in map_floor:
-		game.add_child(f)
-	for r in map_route:
-		game.add_child(r)
-	for t in towers:
-		game.add_child(t)
-	for u in units:
-		game.add_child(u)
+	var terrain = terrain1.instantiate()
+	game.add_child(terrain)
+	
+	var target = Vector3(0,0,0)
+	var spawn_point = convertVector(Vector3(-10, 1, 10))
+
+	# Create test towers
+	var tower1 = LaserTower.new()
+	tower1.position = convertVector(Vector3(0, 1, 2))
+	towers.append(tower1)
+	game.add_child(tower1)
+	var tower2 = LaserTower.new()
+	tower2.position = convertVector(Vector3(-3, 1, 0))
+	towers.append(tower2)
+	game.add_child(tower2)
+
+	## Create test units
+	for i in range(0, 100):
+		var unit = soldierScene.instantiate()
+		unit.position = spawn_point
+		unit.target = target
+		units.append(unit)
+		game.add_child(unit)
+		await get_tree().create_timer(0.5).timeout
+	for i in range(0, 1):
+		var unit = tankScene.instantiate()
+		unit.position = spawn_point
+		unit.target = target
+		units.append(unit)
+		game.add_child(unit)
 
 func add_projectile(p: Projectile):
 	projectiles.append(p)
@@ -71,13 +61,6 @@ func remove_unit(unit: Unit) -> void:
 	game.remove_child(unit)
 	Player.UnitsKilled += 1
 	Player.Money += unit.sell_value
-
-func move_units(_delta: float) -> void:
-	if (route.size() == 0):
-		return
-	# Get the units that should move
-	for unit in units:
-		unit.move(_delta, route) # Move the unit along the route
 
 func towers_attack() -> void:
 	for tower in towers:
