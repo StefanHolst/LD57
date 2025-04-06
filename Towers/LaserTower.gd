@@ -2,7 +2,10 @@ class_name LaserTower extends Tower
 
 @export var Target: Node3D = Node3D.new();
 
+var laserSound = preload("res://Sounds/Laser_Shoot10.wav")
+
 var laserTowerModel = preload("res://Assets/lasertowerv1.glb")
+var player: AudioStreamPlayer3D;
 var instance: Node3D;
 var turret: Node3D;
 var barrel: Node3D;
@@ -12,12 +15,15 @@ func _init(_map: Map) -> void:
 	instance = laserTowerModel.instantiate()
 	self.add_child(instance)
 	
+	player = AudioStreamPlayer3D.new();
+	add_child(player);
+	
 	turret = instance.find_child("Turret")
 	barrel = instance.find_child("Barrel")
 	
-	attack_range = 30.5
+	attack_range = 5.5
 	attack_damage = 20
-	attack_speed = 1000
+	attack_speed = 100
 
 	upgrade_cost = 100
 	upgrade_range = 50
@@ -41,6 +47,9 @@ func attack(unit: Unit) -> Node3D:
 	last_fire = Time.get_ticks_msec()
 
 	print("Attacking unit: ", unit)
+	
+	player.stream = laserSound;
+	player.play()
 
 	# create projectile
 	var p = LaserProjectile.new(map, barrel.global_position, unit.position)
