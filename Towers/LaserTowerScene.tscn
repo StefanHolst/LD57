@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6vrede655bqx"]
 
-[ext_resource type="PackedScene" uid="uid://bwysx7nv56yu8" path="res://Assets/lasertowerv1.glb" id="1_q7k4h"]
+[ext_resource type="PackedScene" uid="uid://02k00cliwjj4" path="res://Assets/lasertowerv1.glb" id="1_q7k4h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q7k4h"]
 size = Vector3(1.4, 3, 1.4)

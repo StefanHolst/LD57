@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bca0bm5iyyeu"]
 
-[ext_resource type="Script" uid="uid://cj4koy0vrk47b" path="res://Units/Tank.gd" id="1_b3j4l"]
-[ext_resource type="PackedScene" uid="uid://cd0narsh2xi5t" path="res://Assets/shittank.glb" id="2_b3j4l"]
+[ext_resource type="Script" uid="uid://colwwvahacy41" path="res://Units/Tank.gd" id="1_b3j4l"]
+[ext_resource type="PackedScene" uid="uid://bbf2716ljmx76" path="res://Assets/shittank.glb" id="2_b3j4l"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nq7dk"]
 viewport_path = NodePath("SubViewport")

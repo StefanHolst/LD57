@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c4hkyv5aeheib"]
 
-[ext_resource type="PackedScene" uid="uid://bwysx7nv56yu8" path="res://Assets/lasertowerv1.glb" id="1_nlsih"]
-[ext_resource type="PackedScene" uid="uid://1febycysn5o1" path="res://Assets/Rockettower.glb" id="2_q5hkw"]
-[ext_resource type="PackedScene" uid="uid://cclbv6ou4ewi7" path="res://Assets/Stunmine.glb" id="4_d43ul"]
+[ext_resource type="PackedScene" uid="uid://02k00cliwjj4" path="res://Assets/lasertowerv1.glb" id="1_nlsih"]
+[ext_resource type="PackedScene" uid="uid://co1rwvjnpm560" path="res://Assets/Rockettower.glb" id="2_q5hkw"]
+[ext_resource type="PackedScene" uid="uid://0v1uuku3byh8" path="res://Assets/Stunmine.glb" id="4_d43ul"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_q5hkw"]
 viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/BuyLaserTower/SubViewport")

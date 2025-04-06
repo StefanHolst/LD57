@@ -30,18 +30,22 @@ func _init() -> void:
 	for i in range(0, 1000):
 		var unit = soldierScene.instantiate()
 		unit.position = spawn_point
+		unit.position.x += (randf() * 4 - 2)
+		unit.position.z += (randf() * 4 - 2)
 		unit.target = target
 		newUnits.insert(randi() % (newUnits.size() + 1), unit)
 	for i in range(0, 1000):
 		var unit = tankScene.instantiate()
 		unit.position = spawn_point
+		unit.position.x += (randf() * 4 - 2)
+		unit.position.z += (randf() * 4 - 2)
 		unit.target = target
 		newUnits.insert(randi() % (newUnits.size() + 1), unit)
 
 var last_unit_add: float = 0
 func _process(delta: float) -> void:
 	last_unit_add -= delta
-	if (last_unit_add < 0 and units.size() < 300):
+	if (last_unit_add < 0):# and units.size() < 300):
 		last_unit_add = spawn_interval
 		var unit = newUnits.pop_front()
 		if unit != null:
