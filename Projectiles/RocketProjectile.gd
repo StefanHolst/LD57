@@ -19,16 +19,16 @@ enum State
 var state: State = State.Launch;
 var stateTimeLeft: float = 0;
 
-func _init(start_pos: Vector3, rot: Quaternion, target: Node3D, minDistance: float = 0.5) -> void:
+func _init(start_pos: Vector3, rot: Quaternion, target: Node3D, minDistance: float = 2) -> void:
 	position = start_pos
 	rotation = rot.get_euler()
 	trackTarget = target
-	self.target = target.position
+	self.target = target.global_position
 	
 	state = State.Launch;
 	stateTimeLeft = 0.5;
 	
-	speed = 5
+	speed = 10
 	damage = 1000
 	range = 5
 	
@@ -40,14 +40,30 @@ func _ready() -> void:
 	mesh.rotation = Vector3(deg_to_rad(-90), 0,0)
 	add_child(mesh)
 
+func checkTrack() -> void:
+	if trackTarget == null:
+		pass
+	elif not trackTarget.is_inside_tree():
+		trackTarget = null
+	else:
+		self.target = trackTarget.global_position
+
+func get_target() -> Vector3:
+	if trackTarget == null:
+		return self.target
+	else:
+		return self.target
+
 func _process(_delta: float) -> void:
+	checkTrack()
+	
 	if state == State.Launch:
 		stateTimeLeft -= _delta
 		if stateTimeLeft <= 0:
 			state = State.Cruise
 			print("Launched")
 	elif state == State.Cruise:
-		var hp = trackTarget.global_position
+		var hp = get_target()
 		hp.y = global_position.y
 		var dir_target = hp - global_position
 		var dist = dir_target.length_squared()
@@ -58,7 +74,7 @@ func _process(_delta: float) -> void:
 			state = State.Track
 			print("Track")
 	elif state == State.Track:
-		var targetPos = trackTarget.global_position
+		var targetPos = get_target()
 		var dir_target = targetPos - global_position
 		var dist = dir_target.length_squared()
 		var dir_rocket = transform.basis.slerp(basis.looking_at(dir_target), _delta*speed*INERTIA)
