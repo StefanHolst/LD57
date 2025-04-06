@@ -8,5 +8,4 @@ func _ready() -> void:
 	Player.ready()
 
 func _process(_delta: float) -> void:
-	Map.move_units(_delta)
 	Map.towers_attack()
