@@ -1,45 +1,47 @@
 extends Camera3D
 
-@export var mouse_sensitivity: float = 0.1  # Degrees per pixel
-@export var move_speed: float = 5.0
-@export var fast_multiplier: float = 3.0
+@export var target: Vector3 = Vector3.ZERO
+@export var distance := 30.0
+@export var min_distance := 20.0
+@export var max_distance := 150.0
+@export var zoom_speed := 1.0
+@export var rotate_speed := 0.01
+@export var vertical_angle_limit := Vector2(0.4, 1.2) # radians (~-70 to +70 degrees)
 
-var rotation_x := 0.0  # pitch
-var rotation_y := 0.0  # yaw
+var horizontal_angle := 0.0
+var vertical_angle := 0.6
+var rotating := false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
+	# Rotating the mouse
 	if event is InputEventMouseMotion:
-		rotation_y -= event.relative.x * mouse_sensitivity
-		rotation_x -= event.relative.y * mouse_sensitivity
-		rotation_x = clamp(rotation_x, -89.9, 89.9)  # Prevent flipping
-		rotation_degrees = Vector3(rotation_x, rotation_y, 0)
+		horizontal_angle -= event.relative.x * rotate_speed
+		vertical_angle = clamp(vertical_angle - event.relative.y * rotate_speed,
+							   vertical_angle_limit.x, vertical_angle_limit.y)
+
+	# Zoom on scroll
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		distance = max(min_distance, distance - zoom_speed)
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		distance = min(max_distance, distance + zoom_speed)
+	elif event is InputEventPanGesture:
+		# Negative y is zoom in, positive y is zoom out
+		distance = clamp(distance + event.delta.y * 0.05, min_distance, max_distance)
 
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _process(delta):
-	var direction := Vector3.ZERO
+	# Calculate spherical offset from angles and distance
+	var offset = Vector3(
+		distance * cos(vertical_angle) * sin(horizontal_angle),
+		distance * sin(vertical_angle),
+		distance * cos(vertical_angle) * cos(horizontal_angle)
+	)
 
-	#if Input.is_action_pressed("move_forward"):
-		#direction -= transform.basis.z
-	#if Input.is_action_pressed("move_backward"):
-		#direction += transform.basis.z
-	#if Input.is_action_pressed("move_left"):
-		#direction -= transform.basis.x
-	#if Input.is_action_pressed("move_right"):
-		#direction += transform.basis.x
-	#if Input.is_action_pressed("move_up"):
-		#direction += transform.basis.y
-	#if Input.is_action_pressed("move_down"):
-		#direction -= transform.basis.y
-
-	var speed := move_speed
-	#if Input.is_action_pressed("move_fast"):
-		#speed *= fast_multiplier
-
-	if direction != Vector3.ZERO:
-		translate(direction.normalized() * speed * delta)
+	global_position = target + offset
+	look_at(target, Vector3.UP)
