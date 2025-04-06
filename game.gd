@@ -5,6 +5,7 @@ extends Node3D
 var terrain: Node3D
 var gridmap: GridMap
 var highlight: Node3D
+var selectedBlock: Node3D
 
 func _ready() -> void:
 	add_child(Map.scene)
@@ -19,19 +20,20 @@ func _process(_delta: float) -> void:
 	Map.towers_attack()
 	
 	# Place towers
-	if (Player.HasPlacement):
+	if (Player.NewItem != null):
 		var hover = get_hovered_grid_position()
 		if hover != null:
 			highlight.visible = true
 			highlight.position = hover
 		else:
 			highlight.visible = false
+			selectedBlock = null
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and Player.HasPlacement and highlight.visible:
-			if (Map.add_player_tower(highlight.position)):
-				Player.HasPlacement = false
+		if event.button_index == MOUSE_BUTTON_LEFT and Player.NewItem != null and highlight.visible:
+			if (Map.add_new_item(highlight.position)):
+				Player.NewItem = null
 				highlight.visible = false
 
 func get_hovered_grid_position():

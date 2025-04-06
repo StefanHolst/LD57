@@ -10,17 +10,20 @@ var store = [
 	{
 		"title": "Laser Tower (100 €)",
 		"price": 100,
-		"tower": LaserTower
+		"height": 4,
+		"type": LaserTower
 	},
 	{
 		"title": "Rocket Tower (300 €)",
 		"price": 300,
-		"tower": RocketTower
+		"height": 4,
+		"type": RocketTower
 	},
 	{
 		"title": "Stun Mine (25 €)",
 		"price": 25,
-		"tower": StunMine
+		"height": 2,
+		"type": StunMine
 	}
 ]
 
@@ -33,19 +36,10 @@ func ready():
 	_shotsFiredLabel.text = str(ShotsFired)
 	var menu = IngameMenu.find_child("BuyMenu") as MenuButton
 	_buyMenu = menu.get_popup()
-	#_setupMenu()
 
-	var buyLaserTowerButton = IngameMenu.find_child("BuyLaserTower") as TextureButton
-	buyLaserTowerButton.pressed.connect(_on_buy.bind(0))
 	IngameMenu.find_child("BuyLaserTower").pressed.connect(_on_buy.bind(0))
 	IngameMenu.find_child("BuyRocketTower").pressed.connect(_on_buy.bind(1))
 	IngameMenu.find_child("BuyStunMine").pressed.connect(_on_buy.bind(2))
-
-func _setupMenu():
-	_buyMenu.connect("id_pressed", Callable(self, "_on_buy"))
-	for i in range(0, store.size()):
-		var item = store[i]
-		_buyMenu.add_item(item["title"], i)
 
 var _money: float = 1000.0
 var Money: float :
@@ -75,13 +69,11 @@ var ShotsFired : int :
 		_shots_fired = value
 		_shotsFiredLabel.text = str(value)
 
-var HasPlacement: bool = false
-var NewTower: Variant
+var NewItem: Variant
 
 func _on_buy(id):
 	var item = store[id]
 	var price = item["price"]
 	if Money >= price:
 		Money -= price
-		HasPlacement = true
-		NewTower = item["tower"]
+		NewItem = item

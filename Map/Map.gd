@@ -93,17 +93,24 @@ func add_damage(position: Vector3, projectile: Projectile) -> void:
 				game.add_child(expl)
 				remove_unit(unit)
 
-func add_player_tower(position: Vector3) -> bool:
+func add_new_item(selectedPosition: Vector3) -> bool:
+	# determine height level the new defence is
+	var place_height = Player.NewItem["height"]
+	
+	# Check if block is allowed to be placed here
+	if (place_height != selectedPosition.y - 1): # Don't mind it...
+		print(selectedPosition.y)
+		return false
+	
 	# check if a tower already exist
 	for tower in towers:
-		if tower.position.x == position.x and tower.position.z == position.z:
+		if tower.position.x == selectedPosition.x and tower.position.z == selectedPosition.z:
 			return false
-		#if position.is_equal_approx(tower.position):
-			#return false
 	
-	var tower = Player.NewTower.new()
-	tower.position = Vector3(position.x, 3, position.z)
+	var tower = Player.NewItem["type"].new()
+	tower.position = Vector3(selectedPosition.x, place_height, selectedPosition.z)
 	towers.append(tower)
 	game.add_child(tower)
 	
 	return true
+	
