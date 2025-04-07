@@ -4,7 +4,7 @@ var IngameMenu: Node2D
 var _moneyLabel: Label
 var _unitKilledLabel: Label
 var _shotsFiredLabel: Label
-var _buyMenu: PopupMenu
+var _waveLabel: Label
 
 var store = [
 	{
@@ -34,12 +34,18 @@ func ready():
 	_unitKilledLabel.text = str(UnitsKilled)
 	_shotsFiredLabel = IngameMenu.find_child("ShotsFired")
 	_shotsFiredLabel.text = str(ShotsFired)
-	var menu = IngameMenu.find_child("BuyMenu") as MenuButton
-	_buyMenu = menu.get_popup()
+	_waveLabel = IngameMenu.find_child("Wave")
+	_waveLabel.text = str(Wave)
 
 	IngameMenu.find_child("BuyLaserTower").pressed.connect(_on_buy.bind(0))
 	IngameMenu.find_child("BuyRocketTower").pressed.connect(_on_buy.bind(1))
 	IngameMenu.find_child("BuyStunMine").pressed.connect(_on_buy.bind(2))
+
+	Money = 1000.0
+	Health = 5
+	UnitsKilled = 0
+	ShotsFired = 0
+	Wave = 0
 
 var _money: float = 1000.0
 var Money: float :
@@ -68,6 +74,13 @@ var ShotsFired : int :
 	set(value):
 		_shots_fired = value
 		_shotsFiredLabel.text = str(value)
+var _wave: int = 0
+var Wave: int :
+	get:
+		return _wave
+	set(value):
+		_wave = value
+		_waveLabel.text = str(Wave)
 
 var NewItem: Variant
 
