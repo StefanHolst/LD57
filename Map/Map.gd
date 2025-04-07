@@ -146,8 +146,8 @@ func _process(delta: float) -> void:
 			units.append(unit)
 			add_child(unit)
 		else: #next wave
-			if Player.Wave + 1 >= waves.size():
-				if units.size() <= 0:
+			if Player.Wave >= waves.size():
+				if hasEnded == false and units.size() <= 0:
 					game_over(true)
 			else:
 				prepare_wave()
@@ -233,7 +233,7 @@ func attack_hq(attacker: Unit) -> void:
 	if !hasEnded:
 		HQ.HP -= attacker.damage
 		if HQ.HP < 0:
-			game_over(true)
+			game_over(false)
 	elif HQ != null:
 		print("Attacked HQ: ", HQ.HP)
 
@@ -243,8 +243,7 @@ func game_over(won: bool):
 	spawn_interval = 1000
 	for t in towers:
 		(t as Tower).attack_speed = 1000000
-	
-	if won:
-		endgameScreen.time = 10
+
+	endgameScreen.won = won
 	endgameScreen.credits = Player.Money
 	endgameScreen.visible = true

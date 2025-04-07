@@ -17,7 +17,7 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="TimeLbl" type="Label" parent="Panel"]
+[node name="StatusLbl" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +27,7 @@ offset_bottom = -568.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 72
-text = "You held out for {seconds} seconds"
+text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -73,7 +73,7 @@ grow_vertical = 2
 disabled = true
 text = "Submit"
 
-[node name="StatusLbl" type="Label" parent="Panel"]
+[node name="StatusLbl22" type="Label" parent="Panel"]
 visible = false
 layout_mode = 1
 anchors_preset = 15

@@ -1,6 +1,6 @@
 extends Control
 
-@onready var TimeLbl: Label = $Panel/TimeLbl
+@onready var TimeLbl: Label = $Panel/StatusLbl
 @onready var ScoreLbl: Label = $Panel/ScoreLbl
 @onready var nameEdit: LineEdit = $Panel/nameEdit
 @onready var submitButton: Button = $Panel/Button
@@ -10,13 +10,16 @@ extends Control
 var t: float;
 var s: float;
 
-@export var time: float:
+@export var won: bool:
 	get:
 		return t
 	set(value):
 		t = value
-		TimeLbl.text = "You held out for {0} seconds".format([value])
-		
+		if value == true:
+			TimeLbl.text = "YOU WON!"
+		else:
+			TimeLbl.text = "Game over"
+
 @export var credits: float:
 	get:
 		return s
