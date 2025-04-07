@@ -3,6 +3,7 @@ extends Node3D
 var floorScene = preload("res://Map/FloorScene.tscn")
 var routeScene = preload("res://Map/RouteScene.tscn")
 var soldierScene = preload("res://Units/SoldierScene.tscn")
+var bossScene = preload("res://Units/BossScene.tscn")
 var tankScene = preload("res://Units/TankScene.tscn")
 var explosion = preload("res://explosion.tscn")
 var mapScene = preload("res://Map/MapScene.tscn")
@@ -116,12 +117,7 @@ func prepare_wave():
 		unit.target = target
 		newUnits.insert(randi() % (newUnits.size() + 1), unit)
 	for i in range(0, wave["Boss"]):
-		var unit = tankScene.instantiate()
-		unit.max_health = 10000
-		unit.health = unit.max_health
-		unit.scale.x = 2
-		unit.scale.y = 2
-		unit.scale.z = 2
+		var unit = bossScene.instantiate()
 		unit.position = spawn_points[randi() % 2]
 		unit.position.x += (randf() * 4 - 2)
 		unit.position.z += (randf() * 4 - 2)
