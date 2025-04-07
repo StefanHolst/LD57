@@ -59,6 +59,6 @@ func world_to_cell(world_pos: Vector3) -> Vector3i:
 	var cell_size = gridmap.cell_size
 	return Vector3i(
 		floor(local_pos.x / cell_size.x) * 2 + 1,
-		floor(local_pos.y / cell_size.y) * 2 + 1,
+		floor(local_pos.y / cell_size.y + 0.5) * 2 + 1,
 		floor(local_pos.z / cell_size.z) * 2 + 1
 	)
