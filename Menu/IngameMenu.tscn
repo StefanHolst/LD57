@@ -1,14 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4hkyv5aeheib"]
+[gd_scene load_steps=13 format=3 uid="uid://c4hkyv5aeheib"]
 
 [ext_resource type="PackedScene" uid="uid://02k00cliwjj4" path="res://Assets/lasertowerv1.glb" id="1_nlsih"]
 [ext_resource type="PackedScene" uid="uid://co1rwvjnpm560" path="res://Assets/Rockettower.glb" id="2_q5hkw"]
 [ext_resource type="PackedScene" uid="uid://0v1uuku3byh8" path="res://Assets/Stunmine.glb" id="4_d43ul"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_d43ul"]
+action = &"buy1"
+
+[sub_resource type="Shortcut" id="Shortcut_7amo2"]
+events = [SubResource("InputEventAction_d43ul")]
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_q5hkw"]
 viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/BuyLaserTower/SubViewport")
 
+[sub_resource type="InputEventAction" id="InputEventAction_v2ce7"]
+action = &"buy2"
+
+[sub_resource type="Shortcut" id="Shortcut_okrkk"]
+events = [SubResource("InputEventAction_v2ce7")]
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_v2ce7"]
 viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/PanelContainer3/VBoxContainer/BuyRocketTower/SubViewport2")
+
+[sub_resource type="InputEventAction" id="InputEventAction_i0k2f"]
+action = &"buy3"
+
+[sub_resource type="Shortcut" id="Shortcut_d43ul"]
+events = [SubResource("InputEventAction_i0k2f")]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_okrkk"]
 viewport_path = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/BuyStunMine/SubViewport3")
@@ -99,6 +117,7 @@ text = "Laser Tower (100 €)"
 
 [node name="BuyLaserTower" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_7amo2")
 texture_normal = SubResource("ViewportTexture_q5hkw")
 stretch_mode = 4
 
@@ -129,6 +148,7 @@ text = "Rocket Tower (300 €)"
 
 [node name="BuyRocketTower" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_okrkk")
 texture_normal = SubResource("ViewportTexture_v2ce7")
 stretch_mode = 4
 
@@ -158,6 +178,7 @@ text = "Stun Mine (25 €)"
 
 [node name="BuyStunMine" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_d43ul")
 texture_normal = SubResource("ViewportTexture_okrkk")
 stretch_mode = 4
 
