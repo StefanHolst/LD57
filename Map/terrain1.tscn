@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://t8qp1la78cfr"]
 
-[ext_resource type="PackedScene" uid="uid://dvw7nv12o8h8w" path="res://Assets/towerv2.glb" id="1_qjiw8"]
+[ext_resource type="PackedScene" uid="uid://c5ewmmponwaek" path="res://Assets/towerv2.glb" id="1_qjiw8"]
 [ext_resource type="MeshLibrary" uid="uid://4p75p734ii0e" path="res://tilestilesT.tres" id="2_gj1sx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qjiw8"]
