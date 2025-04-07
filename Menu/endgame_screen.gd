@@ -2,7 +2,7 @@ extends Control
 
 @onready var TimeLbl: Label = $Panel/TimeLbl
 @onready var ScoreLbl: Label = $Panel/ScoreLbl
-@onready var nameEdit: TextEdit = $Panel/nameEdit
+@onready var nameEdit: LineEdit = $Panel/nameEdit
 @onready var submitButton: Button = $Panel/Button
 @onready var statusLbl: Label = $Panel/StatusLbl
 @onready var req: HTTPRequest = $HTTPRequest;
@@ -24,7 +24,7 @@ var s: float;
 		s = value
 		ScoreLbl.text = "You earned {0} credits".format([value])
 
-func name_changed() -> void:
+func name_changed(new_text: String) -> void:
 	var name: String = nameEdit.text
 	var isValid = name != ""
 	submitButton.disabled = !isValid
@@ -45,3 +45,6 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 		get_tree().change_scene_to_file("res://Menu/Highscore.tscn")
 	else:
 		statusLbl.text = "Error: {0}, {1}".format([result, response_code])
+
+func _on_name_edit_text_submitted(new_text: String) -> void:
+	onSubmit()

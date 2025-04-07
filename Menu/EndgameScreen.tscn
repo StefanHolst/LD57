@@ -45,7 +45,7 @@ text = "You earned {credits} credits"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="nameEdit" type="TextEdit" parent="Panel"]
+[node name="nameEdit" type="LineEdit" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,8 +56,8 @@ offset_right = -448.0
 offset_bottom = -248.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter your name to get on the amazing highscore of eternal glory"
+alignment = 1
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1
@@ -68,6 +68,8 @@ offset_left = 832.0
 offset_top = 896.0
 offset_right = -832.0
 offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
 disabled = true
 text = "Submit"
 
@@ -81,11 +83,14 @@ offset_left = 832.0
 offset_top = 976.0
 offset_right = -832.0
 offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Status"
 horizontal_alignment = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="text_changed" from="Panel/nameEdit" to="." method="name_changed"]
+[connection signal="text_submitted" from="Panel/nameEdit" to="." method="_on_name_edit_text_submitted"]
 [connection signal="pressed" from="Panel/Button" to="." method="onSubmit"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
