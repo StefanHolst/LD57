@@ -23,6 +23,7 @@ var spawn_points: Array[Vector3] = []
 var spawn_interval = 0.2 # seconds
 var wave_interval = 20 # seconds
 var last_unit_add: float = 0
+var boss_delay_factor = 3
 
 var is_ready = false
 var hasEnded = false
@@ -30,27 +31,33 @@ var hasEnded = false
 var waves = [
 	{# 110
 		"Soldiers": 100,
-		"Tanks": 10
+		"Tanks": 10,
+		"Boss": 0
 	},
 	{# 230
 		"Soldiers": 100,
-		"Tanks": 20
+		"Tanks": 20,
+		"Boss": 1
 	},
 	{# 400
 		"Soldiers": 150,
-		"Tanks": 20
+		"Tanks": 20,
+		"Boss": 2
 	},
 	{# 720
 		"Soldiers": 300,
-		"Tanks": 20
+		"Tanks": 20,
+		"Boss": 5
 	},
 	{# 1070
 		"Soldiers": 300,
-		"Tanks": 50
+		"Tanks": 50,
+		"Boss": 20
 	},
 	{# 2000
-		"Soldiers": 600,
-		"Tanks": 40
+		"Soldiers": 0,
+		"Tanks": 0,
+		"Boss": 100
 	}
 ]
 
@@ -90,7 +97,7 @@ func prepare_wave():
 	if is_ready == false:
 		return
 	var wave = waves[Player.Wave]
-	
+
 	for i in range(0, wave["Soldiers"]):
 		var unit = soldierScene.instantiate()
 		unit.position = spawn_points[randi() % 2]
@@ -105,6 +112,18 @@ func prepare_wave():
 		unit.position.z += (randf() * 4 - 2)
 		unit.target = target
 		newUnits.insert(randi() % (newUnits.size() + 1), unit)
+	for i in range(0, wave["Boss"]):
+		var unit = tankScene.instantiate()
+		unit.max_health = 10000
+		unit.health = unit.max_health
+		unit.scale.x = 2
+		unit.scale.y = 2
+		unit.scale.z = 2
+		unit.position = spawn_points[randi() % 2]
+		unit.position.x += (randf() * 4 - 2)
+		unit.position.z += (randf() * 4 - 2)
+		unit.target = target
+		newUnits.insert(randi() % (newUnits.size() + 1), unit)
 	Player.Wave += 1
 
 func _process(delta: float) -> void:
@@ -113,11 +132,13 @@ func _process(delta: float) -> void:
 		last_unit_add = spawn_interval
 		var unit = newUnits.pop_front()
 		if unit != null:
+			if (unit.scale.x > 1):
+				last_unit_add = spawn_interval * boss_delay_factor
 			units.append(unit)
 			add_child(unit)
 		else: #next wave
 			if Player.Wave + 1 >= waves.size():
-				game_over()
+				game_over(true)
 			else:
 				prepare_wave()
 				last_unit_add = wave_interval
@@ -202,17 +223,18 @@ func attack_hq(attacker: Unit) -> void:
 	if !hasEnded:
 		HQ.HP -= attacker.damage
 		if HQ.HP < 0:
-			game_over()
+			game_over(true)
 	elif HQ != null:
 		print("Attacked HQ: ", HQ.HP)
 
-func game_over():
+func game_over(won: bool):
 	is_ready = false
 	hasEnded = true
 	spawn_interval = 1000
 	for t in towers:
 		(t as Tower).attack_speed = 1000000
 	
-	endgameScreen.time = 10
+	if won:
+		endgameScreen.time = 10
 	endgameScreen.credits = Player.Money
 	endgameScreen.visible = true
