@@ -30,9 +30,9 @@ var hasEnded = false
 
 var waves = [
 	{# 110
-		"Soldiers": 100,
+		"Soldiers": 0,
 		"Tanks": 10,
-		"Boss": 0
+		"Boss": 1
 	},
 	{# 230
 		"Soldiers": 100,
@@ -110,6 +110,9 @@ func prepare_wave():
 		unit.position = spawn_points[randi() % 2]
 		unit.position.x += (randf() * 4 - 2)
 		unit.position.z += (randf() * 4 - 2)
+		unit.scale.x = 1
+		unit.scale.y = 1
+		unit.scale.z = 1
 		unit.target = target
 		newUnits.insert(randi() % (newUnits.size() + 1), unit)
 	for i in range(0, wave["Boss"]):
@@ -119,10 +122,6 @@ func prepare_wave():
 		unit.scale.x = 2
 		unit.scale.y = 2
 		unit.scale.z = 2
-		var t = unit.find_child("shittank")
-		var mesh = get_first_mesh(t)
-		var surface = mesh.surface_get_material(0)
-		surface.albedo_color = Color.RED
 		unit.position = spawn_points[randi() % 2]
 		unit.position.x += (randf() * 4 - 2)
 		unit.position.z += (randf() * 4 - 2)
