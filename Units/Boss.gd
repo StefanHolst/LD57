@@ -41,7 +41,7 @@ func _init() -> void:
 	upgrade_speed = 1
 
 	cost = 200
-	sell_value = 100
+	sell_value = 1000
 
 func attack() -> void:
 	if mode == Mode.Attack:
