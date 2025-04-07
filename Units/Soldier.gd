@@ -59,8 +59,7 @@ func _physics_process(delta: float) -> void:
 	if (target == null):
 		return
 
-	var direction = Vector3();
-	direction = nav.get_next_path_position() - global_position
+	var direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
 	if direction.length() > 0.001:
