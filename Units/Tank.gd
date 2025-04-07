@@ -33,7 +33,7 @@ func attack() -> void:
 func _init() -> void:
 	max_health = 1000
 	health = max_health
-	speed = 10
+	speed = 6
 	damage = 0.1
 
 	upgrade_cost = 50

@@ -9,7 +9,7 @@ func _init() -> void:
 
 	attack_range = 200
 	attack_damage = 50
-	attack_speed = 6000
+	attack_speed = 3000
 
 	upgrade_cost = 100
 	upgrade_range = 50

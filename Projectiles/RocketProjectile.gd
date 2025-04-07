@@ -28,7 +28,7 @@ func _init(start_pos: Vector3, rot: Quaternion, targetUnit: Node3D, minDistance:
 	state = State.Launch;
 	stateTimeLeft = 0.5;
 	
-	speed = 10
+	speed = 20
 	damage = 1000
 	range = 5
 	
