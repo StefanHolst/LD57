@@ -155,7 +155,7 @@ Tower Placement:
 
 Other:
 • Enemies attack in waves — be prepared!
-• High score is equal to your € (money), so spend it wisely."
+• High score is equal to your money (€), so spend it wisely."
 label_settings = SubResource("LabelSettings_8w4re")
 
 [node name="ColorRect" type="ColorRect" parent="Instructions/Label"]
@@ -163,7 +163,7 @@ layout_mode = 0
 offset_left = -8.0
 offset_top = -42.0
 offset_right = 557.0
-offset_bottom = 514.0
+offset_bottom = 405.0
 color = Color(0.41, 0.4018, 0.4018, 0.321569)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Play" to="." method="Play"]
