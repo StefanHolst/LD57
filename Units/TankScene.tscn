@@ -15,6 +15,7 @@ bg_color = Color(0.626798, 0.0659753, 0, 1)
 height = 1.0
 
 [node name="Body2" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_b3j4l")
 
 [node name="shittank" parent="." instance=ExtResource("2_b3j4l")]
