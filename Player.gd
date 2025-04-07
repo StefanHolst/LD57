@@ -80,7 +80,7 @@ var Wave: int :
 		return _wave
 	set(value):
 		_wave = value
-		_waveLabel.text = str(Wave)
+		_waveLabel.text = "{0} of 6".format([Wave])
 
 var NewItem: Variant
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LD57;
 
@@ -12,7 +13,18 @@ public class Program
   {
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(policyBuilder =>
+        {
+            policyBuilder.AllowAnyMethod();
+            policyBuilder.AllowAnyHeader();
+            policyBuilder.AllowAnyOrigin();
+        });
+    });
+
     var app = builder.Build();
+    app.UseCors();
 
     var highScores = new HighScoreList();
     app.MapGet("/highscores", () =>
