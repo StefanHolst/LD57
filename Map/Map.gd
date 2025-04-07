@@ -137,7 +137,7 @@ func attack_hq(attacker: Unit) -> void:
 				(t as Tower).attack_speed = 1000000
 			
 			endgameScreen.time = 10
-			endgameScreen.credits = 1337
+			endgameScreen.credits = Player.Money
 			endgameScreen.visible = true
 	else:
 		print("Attacked HQ: ", HQ.HP)
