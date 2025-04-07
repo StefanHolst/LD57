@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://v5gsf1hoq6cc"]
+[gd_scene load_steps=9 format=3 uid="uid://v5gsf1hoq6cc"]
 
 [ext_resource type="Script" uid="uid://cakvbf2hfegnh" path="res://Menu/menu.gd" id="1_lti8b"]
 [ext_resource type="Texture2D" uid="uid://bwtr7ju033el7" path="res://Menu/Background.png" id="2_ihied"]
@@ -9,6 +9,36 @@ diffuse_texture = ExtResource("2_ihied")
 [sub_resource type="SystemFont" id="SystemFont_rwxi6"]
 font_names = PackedStringArray("Monospace")
 font_weight = 999
+
+[sub_resource type="FontFile" id="FontFile_ihied"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_raj00"]
+line_spacing = 0.0
+font = SubResource("FontFile_ihied")
+font_size = 30
+font_color = Color(0.541176, 1, 0.203922, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihied"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8w4re"]
+font_size = 20
+font_color = Color(0.388235, 1, 0.501961, 1)
+shadow_color = Color(0.916622, 0.764818, 0.485897, 0)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -88,6 +118,49 @@ text = "Quit"
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+
+[node name="Instructions" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.135
+anchor_bottom = 0.172
+offset_left = -70.0
+offset_top = 16.0
+offset_right = 13.8
+offset_bottom = -4.76001
+text = "Instructions"
+label_settings = SubResource("LabelSettings_raj00")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Instructions"]
+material = SubResource("ShaderMaterial_ihied")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.242
+anchor_right = 1.842
+anchor_bottom = 1.484
+offset_left = 89.0
+offset_top = 6.07
+offset_right = 86.0801
+offset_bottom = 77.14
+text = "Camera control: 
+• Click and hold mouse 1. Then move mouse. 
+• Scroll to zoom
+
+Tower placement:
+• Buy towers by clicking on the icon in the menu to the left
+•Place towers on top of all blocks but purple.
+• Stun mines can only be placed on purple blocks.
+• Quick buy towers/mines using F1 - F3"
+label_settings = SubResource("LabelSettings_8w4re")
+
+[node name="ColorRect" type="ColorRect" parent="Instructions/Label"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -42.0
+offset_right = 557.0
+offset_bottom = 293.0
+color = Color(0.41, 0.4018, 0.4018, 0.321569)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Play" to="." method="Play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Highscore" to="." method="Highscore"]
