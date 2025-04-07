@@ -21,11 +21,31 @@ var newUnits: Array = []
 var target = Vector3(0,0,0)
 var spawn_points: Array[Vector3] = []
 var spawn_interval = 0.2 # seconds
+var last_unit_add: float = 0
 
 var hasEnded = false;
 
-func _init() -> void:
+
+func setup():
+	spawn_interval = 0.2
+	last_unit_add = 0
 	scene = mapScene.instantiate()
+	
+	for tower in towers:
+		remove_child(tower)
+		tower.queue_free()
+	towers = []
+	
+	for unit in units:
+		remove_child(unit)
+		unit.queue_free()
+	units = []
+	
+	for p in projectiles:
+		remove_child(p)
+		p.queue_free()
+	projectiles = []
+	
 	var spawn1 = scene.find_child("SpawnPoint1") as Node3D
 	var spawn2 = scene.find_child("SpawnPoint2") as Node3D
 	spawn_points.append(spawn1.position)
@@ -47,7 +67,6 @@ func _init() -> void:
 		unit.target = target
 		newUnits.insert(randi() % (newUnits.size() + 1), unit)
 
-var last_unit_add: float = 0
 func _process(delta: float) -> void:
 	last_unit_add -= delta
 	if (last_unit_add < 0):# and units.size() < 300):

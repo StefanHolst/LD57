@@ -9,6 +9,7 @@ var highlight: Node3D
 var selectedBlock: Node3D
 
 func _ready() -> void:
+	Map.setup()
 	add_child(Map.scene)
 	gridmap = Map.scene.find_child("GridMap") as GridMap
 	highlight = Map.scene.find_child("Highlight") as Node3D
