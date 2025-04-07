@@ -138,7 +138,8 @@ func _process(delta: float) -> void:
 			add_child(unit)
 		else: #next wave
 			if Player.Wave + 1 >= waves.size():
-				game_over(true)
+				if units.size() <= 0:
+					game_over(true)
 			else:
 				prepare_wave()
 				last_unit_add = wave_interval
