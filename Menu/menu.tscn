@@ -141,17 +141,21 @@ anchor_right = 1.842
 anchor_bottom = 1.484
 offset_left = 89.0
 offset_top = 6.07
-offset_right = 86.0801
-offset_bottom = 77.14
-text = "Camera control: 
-• Click and hold mouse 1. Then move mouse. 
-• Scroll to zoom
+offset_right = 59.194
+offset_bottom = 203.14
+text = "Camera Control:
+• Click and hold Mouse 1, then move the mouse.
+• Scroll to zoom.
 
-Tower placement:
-• Buy towers by clicking on the icon in the menu to the left
-•Place towers on top of all blocks but purple.
+Tower Placement:
+• Buy towers by clicking on the icons in the menu to the left.
+• Place towers by left-clicking on any block except purple ones.
 • Stun mines can only be placed on purple blocks.
-• Quick buy towers/mines using F1 - F3"
+• Quick-buy towers/mines using F1–F3.
+
+Other:
+• Enemies attack in waves — be prepared!
+• High score is equal to your € (money), so spend it wisely."
 label_settings = SubResource("LabelSettings_8w4re")
 
 [node name="ColorRect" type="ColorRect" parent="Instructions/Label"]
@@ -159,7 +163,7 @@ layout_mode = 0
 offset_left = -8.0
 offset_top = -42.0
 offset_right = 557.0
-offset_bottom = 293.0
+offset_bottom = 514.0
 color = Color(0.41, 0.4018, 0.4018, 0.321569)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Play" to="." method="Play"]
