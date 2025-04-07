@@ -31,9 +31,9 @@ var hasEnded = false
 
 var waves = [
 	{# 110
-		"Soldiers": 0,
+		"Soldiers": 100,
 		"Tanks": 10,
-		"Boss": 1
+		"Boss": 0
 	},
 	{# 230
 		"Soldiers": 100,
