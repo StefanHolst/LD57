@@ -17,6 +17,8 @@ var sell_value: int
 
 var current_route_index: int = 0
 
+func stun(duration: float) -> void:
+	push_error("Abstract method 'stun' must be implemented by subclass.")
 
 func _init() -> void:
 	pass

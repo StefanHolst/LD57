@@ -38,7 +38,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_6l022")
 theme_override_styles/fill = SubResource("StyleBoxFlat_iw74r")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_b3j4l")

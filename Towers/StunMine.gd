@@ -1,15 +1,16 @@
 class_name StunMine extends Tower
 
 var stunMineScene = preload("res://Towers/StunMineScene.tscn")
+var stunExplosion = preload("res://stun_explosion.tscn")
 var instance: Node3D;
 
 func _init() -> void:
 	instance = stunMineScene.instantiate()
 	self.add_child(instance)
 
-	attack_range = 1
-	attack_damage = 0
-	attack_speed = 1
+	attack_range = 2
+	attack_damage = 2 # Duration
+	attack_speed = 1000
 
 	upgrade_cost = 100
 	upgrade_range = 50
@@ -25,20 +26,10 @@ func attack(unit: Unit) -> Node3D:
 	if (last_fire + attack_speed > Time.get_ticks_msec()):
 		return null
 	last_fire = Time.get_ticks_msec()
-	
-	#var player = instance.find_child("AnimationPlayer") as AnimationPlayer
-	#var player2 = instance.find_child("AnimationPlayer2") as AnimationPlayer
-	#player.play("lid1Action_001")
-	#player2.play("lid2Action_001")
-	#
-	#var p = Rocket.new(global_position, Quaternion.from_euler(Vector3(PI/2,0,0)), unit)
-	#p.damage = attack_damage
-	#await get_tree().create_timer(0.7).timeout
 
-	#Map.add_projectile(p)
+	Map.add_stun(global_position, attack_range, attack_damage)
 	
-	#player.play_backwards("lid1Action_001")
-	#player2.play_backwards("lid2Action_001")
-	#await get_tree().create_timer(0.7).timeout
-	
+	var expl = stunExplosion.instantiate()
+	add_child(expl)
+
 	return null

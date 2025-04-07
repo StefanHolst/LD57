@@ -89,6 +89,17 @@ text = "Shots Fired:"
 layout_mode = 2
 text = "0"
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer4"]
+layout_mode = 2
+text = "Wave:"
+
+[node name="Wave" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer4"]
+layout_mode = 2
+text = "0"
+
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -99,11 +110,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Buy Towers"
-
-[node name="BuyMenu" type="MenuButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Buy Tower"
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
