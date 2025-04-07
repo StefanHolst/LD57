@@ -29,11 +29,13 @@ var hasEnded = false;
 func setup():
 	spawn_interval = 0.2
 	last_unit_add = 0
+	hasEnded = false
 	scene = mapScene.instantiate()
 	
 	for tower in towers:
-		remove_child(tower)
-		tower.queue_free()
+		if tower != null:
+			remove_child(tower)
+			tower.queue_free()
 	towers = []
 	
 	for unit in units:
@@ -42,8 +44,9 @@ func setup():
 	units = []
 	
 	for p in projectiles:
-		remove_child(p)
-		p.queue_free()
+		if p != null:
+			remove_child(p)
+			p.queue_free()
 	projectiles = []
 	
 	var spawn1 = scene.find_child("SpawnPoint1") as Node3D
