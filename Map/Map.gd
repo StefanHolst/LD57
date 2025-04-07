@@ -119,12 +119,26 @@ func prepare_wave():
 		unit.scale.x = 2
 		unit.scale.y = 2
 		unit.scale.z = 2
+		var t = unit.find_child("shittank")
+		var mesh = get_first_mesh(t)
+		var surface = mesh.surface_get_material(0)
+		surface.albedo_color = Color.RED
 		unit.position = spawn_points[randi() % 2]
 		unit.position.x += (randf() * 4 - 2)
 		unit.position.z += (randf() * 4 - 2)
 		unit.target = target
 		newUnits.insert(randi() % (newUnits.size() + 1), unit)
 	Player.Wave += 1
+
+func get_first_mesh(node: Node3D) -> Mesh:
+	for child in node.get_children():
+		if child is MeshInstance3D:
+			return child.mesh
+		elif child is Node3D:
+			var result = get_first_mesh(child)
+			if result:
+				return result
+	return null
 
 func _process(delta: float) -> void:
 	last_unit_add -= delta
