@@ -15,6 +15,8 @@ var body
 var accel = 10
 var mode: Mode = Mode.Walk;
 var player: AnimationPlayer;
+var slowdown: float = 0;
+var slowdownLeft: float = 0;
 
 func _ready():
 	body = find_child("Body")
@@ -66,6 +68,13 @@ func _physics_process(delta: float) -> void:
 	if direction.length() > 0.001:
 		self.look_at(self.global_position + direction)
 	
+	if slowdownLeft > 0:
+		velocity *= slowdown
+		slowdownLeft -= delta
 	velocity = velocity.lerp(direction * speed, accel * delta)
 
 	move_and_slide()
+
+func stun(duration: float) -> void:
+	slowdown = 0.5
+	slowdownLeft = duration

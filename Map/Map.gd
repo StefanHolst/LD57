@@ -13,9 +13,9 @@ var scene: Node3D
 
 var HQ: Headquarter;
 
-var towers: Array = []
-var units: Array = []
-var projectiles: Array = []
+var towers: Array[Tower] = []
+var units: Array[Unit] = []
+var projectiles: Array[Projectile] = []
 
 var newUnits: Array = []
 var target = Vector3(0,0,0)
@@ -146,19 +146,20 @@ func towers_attack() -> void:
 		var closest_unit = null
 		var closest_distance = 9999999.0
 		for unit in units:
-			var distance = tower.position.distance_to(unit.position)
+			var distance = tower.position.distance_squared_to(unit.position)
 			if (closest_unit == null or distance < closest_distance):
 				closest_unit = unit
 				closest_distance = distance
 
-		if (closest_unit != null and closest_distance < tower.attack_range):
+		if (closest_unit != null and closest_distance < (tower.attack_range**2)):
 			tower.attack(closest_unit) # Attack the closest unit
 			pass
 
 func add_damage(position: Vector3, projectile: Projectile) -> void:
 	# Find the unit at the position
+	var rangeSqr = projectile.range ** 2
 	for unit in units:
-		if (unit.position.distance_to(position) < projectile.range):
+		if (unit.position.distance_squared_to(position) < rangeSqr):
 			unit.health -= projectile.damage
 			var healthPercent = (unit.health / unit.max_health) * 100.0
 			unit.healthBar.value = healthPercent
@@ -168,6 +169,13 @@ func add_damage(position: Vector3, projectile: Projectile) -> void:
 				expl.position = unit.position
 				game.add_child(expl)
 				remove_unit(unit)
+
+func add_stun(position: Vector3, radius: float, duration: float) -> void:
+	var rangeSqr = radius ** 2
+	for unit in units:
+		if (unit.position.distance_squared_to(position) < rangeSqr):
+			unit.stun(duration)
+	print("Stun")
 
 func add_new_item(selectedPosition: Vector3) -> bool:
 	# determine height level the new defence is
