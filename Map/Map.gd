@@ -126,9 +126,8 @@ func add_new_item(selectedPosition: Vector3) -> bool:
 	return true
 
 func attack_hq(attacker: Unit) -> void:
-	HQ.HP -= attacker.damage
-	
 	if !hasEnded:
+		HQ.HP -= attacker.damage
 		if HQ.HP < 0:
 			hasEnded = true
 			print("Fail, stopping shooting+spawning")
@@ -139,5 +138,5 @@ func attack_hq(attacker: Unit) -> void:
 			endgameScreen.time = 10
 			endgameScreen.credits = Player.Money
 			endgameScreen.visible = true
-	else:
+	elif HQ != null:
 		print("Attacked HQ: ", HQ.HP)
