@@ -124,4 +124,4 @@ func add_new_item(selectedPosition: Vector3) -> bool:
 	
 func attack_hq(attacker: Unit) -> void:
 	print("Attacked HQ")
-	HQ.HP -= 0.01
+	HQ.HP -= attacker.damage
