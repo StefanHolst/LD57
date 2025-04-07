@@ -8,6 +8,7 @@ var explosion = preload("res://explosion.tscn")
 var mapScene = preload("res://Map/MapScene.tscn")
 
 var game: Node3D
+var endgameScreen: Control;
 var scene: Node3D
 
 var HQ: Headquarter;
@@ -20,6 +21,8 @@ var newUnits: Array = []
 var target = Vector3(0,0,0)
 var spawn_points: Array[Vector3] = []
 var spawn_interval = 0.2 # seconds
+
+var hasEnded = false;
 
 func _init() -> void:
 	scene = mapScene.instantiate()
@@ -121,7 +124,20 @@ func add_new_item(selectedPosition: Vector3) -> bool:
 	game.add_child(tower)
 	
 	return true
-	
+
 func attack_hq(attacker: Unit) -> void:
-	print("Attacked HQ")
 	HQ.HP -= attacker.damage
+	
+	if !hasEnded:
+		if HQ.HP < 0:
+			hasEnded = true
+			print("Fail, stopping shooting+spawning")
+			spawn_interval = 1000
+			for t in towers:
+				(t as Tower).attack_speed = 1000000
+			
+			endgameScreen.time = 10
+			endgameScreen.credits = 1337
+			endgameScreen.visible = true
+	else:
+		print("Attacked HQ: ", HQ.HP)

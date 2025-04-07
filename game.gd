@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var camera = $Camera3D
+@onready var endgameScreen: Control = $CanvasLayer/EndgameScreen
 
 var terrain: Node3D
 var gridmap: GridMap
@@ -13,6 +14,7 @@ func _ready() -> void:
 	highlight = Map.scene.find_child("Highlight") as Node3D
 
 	Map.game = self
+	Map.endgameScreen = endgameScreen
 	Player.IngameMenu = find_child("IngameMenu")
 	Player.ready()
 
