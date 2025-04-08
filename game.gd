@@ -21,7 +21,17 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	Map.towers_attack()
-	
+	update_cursor()
+
+func _input(event: InputEvent) -> void:
+	update_cursor()
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and Player.NewItem != null and highlight.visible:
+			if (Map.add_new_item(highlight.position)):
+				Player.NewItem = null
+				highlight.visible = false
+
+func update_cursor():
 	# Place towers
 	if (Player.NewItem != null):
 		var hover = get_hovered_grid_position()
@@ -31,13 +41,6 @@ func _process(_delta: float) -> void:
 		else:
 			highlight.visible = false
 			selectedBlock = null
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and Player.NewItem != null and highlight.visible:
-			if (Map.add_new_item(highlight.position)):
-				Player.NewItem = null
-				highlight.visible = false
 
 func get_hovered_grid_position():
 	var mouse_pos = get_viewport().get_mouse_position()

@@ -72,7 +72,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer3"]
 layout_mode = 2
-text = "Units Killed:"
+text = "Units Terminated:"
 
 [node name="UnitsKilled" type="Label" parent="HBoxContainer/VBoxContainer/Stats/HBoxContainer3"]
 layout_mode = 2

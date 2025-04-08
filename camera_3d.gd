@@ -6,7 +6,7 @@ extends Camera3D
 @export var max_distance := 150.0
 @export var zoom_speed := 1.0
 @export var rotate_speed := 0.01
-@export var vertical_angle_limit := Vector2(0.4, 1.2) # radians (~-70 to +70 degrees)
+@export var vertical_angle_limit := Vector2(0.2, 1.4) # radians (~-70 to +70 degrees)
 
 var horizontal_angle := 0.0
 var vertical_angle := 0.6
@@ -22,7 +22,7 @@ func _input(event):
 		horizontal_angle -= event.relative.x * rotate_speed
 		var verticalMin = vertical_angle_limit.x
 		var verticalMax = vertical_angle_limit.y
-		vertical_angle = clamp(vertical_angle - event.relative.y * rotate_speed, verticalMin, verticalMax)
+		vertical_angle = clamp(vertical_angle + event.relative.y * rotate_speed, verticalMin, verticalMax)
 	# Zoom on scroll
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
 		distance = max(min_distance, distance - zoom_speed)
@@ -31,6 +31,9 @@ func _input(event):
 	elif event is InputEventPanGesture:
 		# Negative y is zoom in, positive y is zoom out
 		distance = clamp(distance + event.delta.y * 0.05, min_distance, max_distance)
+	elif event is InputEventMagnifyGesture:
+		# event.factor > 1.0 is zoom in, < 1.0 is zoom out
+		distance = clamp(distance / event.factor, min_distance, max_distance)
 
 func _process(_delta):
 	# Calculate spherical offset from angles and distance
